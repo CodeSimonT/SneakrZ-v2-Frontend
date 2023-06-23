@@ -4,7 +4,7 @@ import { styling } from "../../style/style.js";
 const Hero = () => {
   return (
     <>
-      <section>
+      <section className="py-5 mt-3">
         <div className="container-fluid Staatliches">
           <div className="row position-relative">
             {/* hero title (absolute) */}
