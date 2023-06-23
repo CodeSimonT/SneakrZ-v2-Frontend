@@ -1,0 +1,196 @@
+:root {
+  --gray: #f5f5f5;
+  --darkgray: #e5e5e5;
+  --dark: #111111;
+  --footerTextColor: #7e7e7e;
+  --navbarSubTextColor: #bbbbbb;
+}
+
+@font-face {
+  font-family: urbanist;
+  src: url("./fonts/Urbanist/Urbanist-SemiBold.ttf");
+}
+@font-face {
+  font-family: urbanistBold;
+  src: url("./fonts/Urbanist/Urbanist-ExtraBold.ttf");
+}
+@font-face {
+  font-family: Staatliches;
+  src: url("./fonts/Urbanist/Staatliches-Regular.ttf");
+}
+/* modify the scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--footerTextColor);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* globals */
+li {
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.colorGray {
+}
+.backColorGray {
+  background-color: var(--gray);
+}
+.pointer {
+  cursor: pointer;
+}
+.bold {
+  font-weight: bold;
+}
+.textGray {
+  color: var(--darkgray);
+}
+.urbanistBold {
+  font-family: urbanistBold;
+}
+.urbanist {
+  font-family: urbanist;
+}
+.Staatliches {
+  font-family: Staatliches;
+}
+.whiteSmoke {
+  color: whitesmoke;
+}
+.PageMinWidth {
+  width: 1300px;
+}
+.buttonStyle {
+  padding: 10px 15px;
+  background-color: var(--dark);
+  border-radius: 10px;
+  color: white;
+  border: none;
+}
+/* end globals */
+
+/* nav design */
+.navbarSubTextColor {
+  color: var(--navbarSubTextColor);
+}
+.removeUnderline {
+  text-decoration: none;
+}
+.containerF {
+  width: 100%;
+}
+.buttonDesign {
+  border: none;
+}
+.navLinkF {
+  font-size: 18px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.1s linear;
+}
+.navLinkF:hover {
+  border-bottom: 3px solid black;
+}
+.navImgW {
+  width: 28px;
+}
+.collapseW {
+  width: 800px;
+}
+.navBorderStyle {
+  width: 70%;
+  border: 0px;
+  margin-right: 10px;
+  outline: none;
+  background-color: transparent;
+}
+.searchCon {
+  width: 200px;
+}
+.searchHover {
+  transition: all 0.1s linear;
+}
+.searchHover:hover {
+  background-color: var(--darkgray);
+}
+.featuredD {
+  content: "";
+  position: absolute;
+  background-color: gray;
+  left: 0;
+  top: 72px;
+  width: 100%;
+  height: 300px;
+}
+.accordionRemoveB {
+  border: 0;
+  border-bottom: none;
+}
+
+.accordion-item:first-of-type .accordion-button {
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+.accordion-button:not(.collapsed) {
+  color: black;
+  background-color: #e7f1ff;
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+.accordion-button:not(.collapsed) {
+  color: black;
+  background-color: #fff;
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+  /* border-left: 2em solid black; */
+}
+.accordion-button:focus {
+  box-shadow: none;
+  /* border-color: rgba(0, 0, 0, 0.125); */
+}
+.accordion-border {
+  border: none;
+}
+/* navbar media query */
+@media screen and (max-width: 992px) {
+  .navSearchResposive {
+    width: 100%;
+  }
+}
+
+/* footer style */
+.footerStyle {
+  background-color: var(--dark);
+}
+.socialStyle {
+  background-color: var(--footerTextColor);
+  padding: 5px;
+  border-radius: 50%;
+
+  transition: all 0.1s linear;
+}
+.socialStyle:hover {
+  background-color: var(--darkgray);
+}
+.footerSocialS {
+  width: 25px;
+}
+.footerTextColorGray {
+  color: var(--footerTextColor);
+}
+/* end footer style */

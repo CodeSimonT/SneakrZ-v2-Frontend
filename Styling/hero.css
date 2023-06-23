@@ -1,0 +1,36 @@
+:root {
+  --gray: #f5f5f5;
+  --darkgray: #e5e5e5;
+  --dark: #111111;
+  --footerTextColor: #7e7e7e;
+  --navbarSubTextColor: #bbbbbb;
+}
+
+.heroAbsolute {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.heroHeadingStyle {
+  font-size: 40px;
+  /* font-size: 80px; */
+}
+
+@media screen and (min-width: 768px) {
+  .heroHeadingStyle {
+    font-size: 60px;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .heroHeadingStyle {
+    font-size: 80px;
+  }
+}
+
+.heroSubText {
+  max-width: 500px;
+}
