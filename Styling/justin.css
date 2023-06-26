@@ -5,21 +5,6 @@
   --footerTextColor: #7e7e7e;
   --navbarSubTextColor: #bbbbbb;
 }
-.justInT {
-  max-width: 800px;
-  z-index: 5;
-}
-.justInOverlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: black;
-  opacity: 0.3;
-  z-index: -1;
-  border-radius: 8px;
-}
 .justInContainer {
   background-image: url("../src/assets/images/justInImage.jpg");
   border-radius: 8px;
@@ -31,5 +16,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+}
+.justInOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.5;
   z-index: -1;
+  border-radius: 8px;
+}
+.justInT {
+  max-width: 800px;
+  font-weight: 100;
+  z-index: 5;
 }
