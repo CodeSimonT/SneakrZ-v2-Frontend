@@ -1,15 +1,21 @@
 import React from "react";
 import { categories } from "../constants/index";
 import { adidas } from "../assets/icons/icons.js";
+import { styling } from "../../style/style";
+
 const Categories = () => {
   return (
-    <section>
-      <img src={adidas} alt="" />
-      {categories.map((item) => (
-        <div key={item.id} className="bg-black categoriesItem p-1">
-          <img src={item.image} alt="" className="w-100" />
-        </div>
-      ))}
+    <section className="py-5">
+      <div className="row w-100">
+        {categories.map((item) => (
+          <div
+            key={item.id}
+            className={`${styling.flexCenter} p-15 col-6 col-lg-3`}
+          >
+            <img src={item.image} alt="" className="imageSize" />
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

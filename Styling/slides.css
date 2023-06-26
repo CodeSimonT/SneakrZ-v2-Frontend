@@ -1,0 +1,20 @@
+#slides {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splide__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.splide__slide {
+  padding: 2px;
+}

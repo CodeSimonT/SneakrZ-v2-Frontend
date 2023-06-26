@@ -1,3 +1,20 @@
 .categoriesItem {
   width: 100px;
+  height: 100px;
+}
+
+/* @media (max-width: 768px) {
+  .categoriesItem {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoriesItem {
+    flex-basis: 100%;
+  }
+} */
+
+.imageSize {
+  width: 40%;
 }

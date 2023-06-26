@@ -7,10 +7,10 @@ import facebook from "./icons8-facebook-100.png";
 import instagram from "./icons8-instagram-100.png";
 import twitter from "./icons8-twitter-100.png";
 
-import nike from "./icons8-nike-100.png";
-import adidas from "./icons8-adidas-trefoil-100.png";
-import newBalance from "./New-Balance-Logo-Black-and-White-removebg-preview.png";
-import UA from "./UA.png";
+import nike from "./nike-logo.png";
+import adidas from "./adidas-logo.png";
+import newBalance from "./newbalance-logo.png";
+import UA from "./underarmour-logo.png";
 
 export {
   bag,
