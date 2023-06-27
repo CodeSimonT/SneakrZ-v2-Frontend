@@ -1,19 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllShoes } from "../../../redux/cart/getAllShoes.js";
-import { styling } from "../../../../style/style.js";
+import { styling } from "../../style/style";
 
-const NewArrivals = () => {
-  const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.data);
-  useEffect(() => {
-    dispatch(fetchAllShoes());
-  }, []);
-
-  useEffect(() => {
-    console.log(items);
-  }, []);
-
+const SingleShoes = () => {
+  const { singleItem } = useSelector((state) => state.data);
+  console.log(singleItem);
   return (
     <>
       <section className="py-5 my-5">
@@ -24,7 +15,7 @@ const NewArrivals = () => {
             <div className="d-flex">
               {/* number List */}
               <div className={`${styling.flexCenter} me-2`}>
-                <h3> Men's Shoes {items?.task?.length} pieces </h3>
+                <h3> Men's Shoes {singleItem?.task?.length} pieces </h3>
               </div>
               {/* dropdown */}
               <div className="dropdown">
@@ -89,20 +80,24 @@ const NewArrivals = () => {
           </div>
           {/* grid container */}
           <div className="row">
-            {items?.task?.map((item) => (
-              <div className="col-4 mb-4" key={item._id}>
-                <div className="card w-100">
-                  <img src={item.image} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">{item.title} </h5>
-                    <p className="card-text descriptionS">{item.description}</p>
-                    <p className="card-text">{item._id}</p>
-                    <p className="card-text">{item.price}</p>
-                    <p className="card-text">{item.for}</p>
-                  </div>
+            <div
+              className="col-4 mb-4 pointer"
+              // key={singleItem.task.}
+              // onClick={() => dispatchSingle(item._id)}
+            >
+              <div className="card w-100">
+                <img src={singleItem.task.image} className="card-img-top" />
+                <div className="card-body">
+                  <h5 className="card-title">{singleItem.task.title} </h5>
+                  <p className="card-text descriptionS">
+                    {singleItem.task.description}
+                  </p>
+                  <p className="card-text">{singleItem.task._id}</p>
+                  <p className="card-text">{singleItem.task.price}</p>
+                  <p className="card-text">{singleItem.task.for}</p>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -110,4 +105,4 @@ const NewArrivals = () => {
   );
 };
 
-export default NewArrivals;
+export default SingleShoes;

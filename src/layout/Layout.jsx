@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <>
       <div className={styling.flexCenter}>
-        <div className="PageMinWidth">
+        <div className={`PageMinWidth`}>
           <Navbar />
           <Outlet />
           <Footer />

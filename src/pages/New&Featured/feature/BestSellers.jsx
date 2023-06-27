@@ -1,25 +1,28 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { styling } from "../../../../style/style.js";
-import axios from "axios";
+import {
+  fetchAllShoes,
+  fetchSingleShoes,
+} from "../../../redux/cart/getAllShoes.js";
 
 const BestSellers = () => {
-  const [item, setItem] = useState({ task: [] });
-  const fetchData = async () => {
-    try {
-      const { data } = await axios.get(
-        "http://localhost:5000/shoes/getAllShoes"
-      );
-      setItem(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { items } = useSelector((state) => state.data);
+
+  const dispatchSingle = (id) => {
+    console.log(id);
+    dispatch(fetchSingleShoes({ id, navigate }));
   };
   useEffect(() => {
-    fetchData();
-  }, []);
+    dispatch(fetchAllShoes());
+  }, [dispatch]);
+
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    console.log(items);
+  }, []);
 
   return (
     <>
@@ -31,7 +34,7 @@ const BestSellers = () => {
             <div className="d-flex">
               {/* number List */}
               <div className={`${styling.flexCenter} me-2`}>
-                <h3> Men's Shoes (10)</h3>
+                <h3> Men's Shoes {items?.task?.length} pieces </h3>
               </div>
               {/* dropdown */}
               <div className="dropdown">
@@ -96,15 +99,18 @@ const BestSellers = () => {
           </div>
           {/* grid container */}
           <div className="row">
-            {item.task.map((item) => (
-              <div className="col-4 mb-4">
-                <div className="card w-100" key={item._id}>
-                  <img src={item.image} className="card-img-top" alt="..." />
+            {items?.task?.map((item) => (
+              <div
+                className="col-4 mb-4 pointer"
+                key={item._id}
+                onClick={() => dispatchSingle(item._id)}
+              >
+                <div className="card w-100">
+                  <img src={item.image} className="card-img-top" />
                   <div className="card-body">
                     <h5 className="card-title">{item.title} </h5>
-                    <p className="card-text descriptionS">{item.description}</p>
-                    <p className="card-text">{item.price}</p>
                     <p className="card-text">{item.for}</p>
+                    <p className="card-text">${item.price}</p>
                   </div>
                 </div>
               </div>

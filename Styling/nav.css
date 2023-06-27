@@ -7,8 +7,11 @@
 }
 .navbar {
   z-index: 100000;
+  width: 100%;
 }
-
+.NavMinWidth {
+  width: 1290px;
+}
 .navbarSubTextColor {
   color: var(--navbarSubTextColor);
 }

@@ -36,6 +36,9 @@ import Login from "./Login";
 // signup
 import SignUp from "./SignUp";
 
+// single shoes
+import SingleShoes from "./SingleShoes";
+
 export {
   MainPage,
   NotFound,
@@ -57,4 +60,5 @@ export {
   WomenSale,
   Login,
   SignUp,
+  SingleShoes,
 };

@@ -9,7 +9,7 @@ const Navbar = () => {
   // const [hover, setHover] = useState(false);
   return (
     <>
-      <nav className="navbar position-fixed urbanist w-100 bg-white">
+      <nav className="navbar position-fixed NavMinWidth urbanist bg-white">
         <div className="container-fluid d-flex justify-content-center">
           {/* grid container */}
           <div className="row containerF">

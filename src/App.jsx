@@ -34,6 +34,7 @@ import {
   WomenSale,
   Login,
   SignUp,
+  SingleShoes,
 } from "./pages";
 
 const App = () => {
@@ -78,6 +79,9 @@ const App = () => {
           <Route path="/Login" element={<Login />}></Route>
           {/* signup */}
           <Route path="/SignUp" element={<SignUp />}></Route>
+
+          {/* single shoes */}
+          <Route path="/SingleShoes" element={<SingleShoes />}></Route>
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
