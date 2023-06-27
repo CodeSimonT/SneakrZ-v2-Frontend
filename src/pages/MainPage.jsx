@@ -5,7 +5,7 @@ const MainPage = () => {
   return (
     <>
       <Hero />
-      {/* <Categories /> */}
+      <Categories />
       <JustIn />
       <Slides />
       <Featured />
