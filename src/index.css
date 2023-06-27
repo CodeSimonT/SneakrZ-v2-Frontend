@@ -128,3 +128,6 @@ h3 {
   color: var(--footerTextColor);
 }
 /* end footer style */
+.remove-outline {
+  outline: none;
+}
