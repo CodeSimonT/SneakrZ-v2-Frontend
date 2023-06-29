@@ -6,12 +6,10 @@
   --navbarSubTextColor: #bbbbbb;
 }
 .navbar {
-  z-index: 100000;
-  width: 100%;
 }
 .NavMinWidth {
-  width: 1290px;
 }
+
 .navbarSubTextColor {
   color: var(--navbarSubTextColor);
 }
@@ -70,7 +68,10 @@
   border: 0;
   border-bottom: none;
 }
-
+.NavMinW {
+  max-width: 1290px;
+  width: 1290px;
+}
 .accordion-item:first-of-type .accordion-button {
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);

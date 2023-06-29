@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api.js";
 
 // fetch all shoes
-export const fetchAllShoes = createAsyncThunk("data/fetchAll", async () => {
+export const fetchAllShoes = createAsyncThunk("data/getAllShoes", async () => {
   try {
     const response = await api.getAllShoes();
     return response.data;
@@ -12,7 +12,7 @@ export const fetchAllShoes = createAsyncThunk("data/fetchAll", async () => {
 });
 // fetch single shoes
 export const fetchSingleShoes = createAsyncThunk(
-  "data/fetchSingle",
+  "data/getSingleShoes",
   async ({ id, navigate }) => {
     try {
       const response = await api.getSingleShoes(id);
@@ -25,7 +25,7 @@ export const fetchSingleShoes = createAsyncThunk(
 );
 
 const getAllShoes = createSlice({
-  name: "data",
+  name: "allShoes",
   initialState: {
     loading: false,
     error: null,

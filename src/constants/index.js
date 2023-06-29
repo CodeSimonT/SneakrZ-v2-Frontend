@@ -10,6 +10,10 @@ export const NavLinks = [
         subtoggel: "toggler1",
         subLinks: [
           {
+            hubTitle: "All Shoes",
+            link: "/AllShoes",
+          },
+          {
             hubTitle: "Best Sellers",
             link: "/BestSellers",
           },
@@ -28,16 +32,20 @@ export const NavLinks = [
         subtoggel: "toggler2",
         subLinks: [
           {
-            hubTitle: "Air Force 1",
-            link: "/AirForce1",
+            hubTitle: "Nike",
+            link: "/Nike",
           },
           {
-            hubTitle: "Air Jordan 1",
-            link: "/AirJordan1",
+            hubTitle: "Adidas",
+            link: "/Adidas",
           },
           {
-            hubTitle: "Air Max",
-            link: "/AirMax",
+            hubTitle: "NewBalance",
+            link: "/NewBalance",
+          },
+          {
+            hubTitle: "UnderArmour",
+            link: "/UnderArmour",
           },
         ],
       },

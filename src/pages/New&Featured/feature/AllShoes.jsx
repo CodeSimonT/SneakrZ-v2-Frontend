@@ -7,7 +7,7 @@ import {
   fetchSingleShoes,
 } from "../../../redux/cart/getAllShoes.js";
 
-const BestSellers = () => {
+const AllShoes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { items } = useSelector((state) => state.allShoes);
@@ -30,7 +30,7 @@ const BestSellers = () => {
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
               <div className={`me-0 ${styling.CenterY}`}>
-                <h3> Best Seller's {items?.task?.length} pieces </h3>
+                <h3>All Shoes {items?.task?.length} pieces </h3>
               </div>
             </div>
             {/* right content */}
@@ -86,4 +86,4 @@ const BestSellers = () => {
   );
 };
 
-export default BestSellers;
+export default AllShoes;

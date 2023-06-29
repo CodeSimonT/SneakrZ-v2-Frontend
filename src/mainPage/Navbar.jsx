@@ -9,8 +9,8 @@ const Navbar = () => {
   // const [hover, setHover] = useState(false);
   return (
     <>
-      <nav className="navbar position-fixed NavMinWidth urbanist bg-white">
-        <div className="container-fluid d-flex justify-content-center">
+      <nav className="navbar urbanist w-100 bg-white">
+        <div className="container-fluid px-0 d-flex justify-content-center">
           {/* grid container */}
           <div className="row containerF">
             {/* logo */}

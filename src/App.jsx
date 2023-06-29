@@ -5,13 +5,15 @@ import {
   MainPage,
   NotFound,
   // featured
+  AllShoes,
   BestSellers,
   LatestShoes,
   NewArrivals,
   //
-  AirForce1,
-  AirJordan1,
-  AirMax,
+  Nike,
+  Adidas,
+  NewBalance,
+  UnderArmour,
   //
   NewForMen,
   //
@@ -34,8 +36,13 @@ import {
   WomenSale,
   Login,
   SignUp,
-  SingleShoes,
 } from "./pages";
+
+import {
+  SingleShoes,
+  GetSingleShoesMen,
+  GetSingleShoesWomen,
+} from "./middleware";
 
 const App = () => {
   return (
@@ -47,13 +54,15 @@ const App = () => {
 
           {/* new & featured */}
           {/* feature */}
+          <Route path="/AllShoes" element={<AllShoes />}></Route>
           <Route path="/BestSellers" element={<BestSellers />}></Route>
           <Route path="/LatestShoes" element={<LatestShoes />}></Route>
           <Route path="/NewArrivals" element={<NewArrivals />}></Route>
           {/* shop icons */}
-          <Route path="/AirForce1" element={<AirForce1 />}></Route>
-          <Route path="/AirJordan1" element={<AirJordan1 />}></Route>
-          <Route path="/AirMax" element={<AirMax />}></Route>
+          <Route path="/Nike" element={<Nike />}></Route>
+          <Route path="/Adidas" element={<Adidas />}></Route>
+          <Route path="/NewBalance" element={<NewBalance />}></Route>
+          <Route path="/UnderArmour" element={<UnderArmour />}></Route>
           {/* new for men */}
           <Route path="/NewForMen" element={<NewForMen />}></Route>
           {/* for women */}
@@ -82,6 +91,16 @@ const App = () => {
 
           {/* single shoes */}
           <Route path="/SingleShoes" element={<SingleShoes />}></Route>
+          {/* GetSingleShoesMen */}
+          <Route
+            path="/GetSingleShoesMen"
+            element={<GetSingleShoesMen />}
+          ></Route>
+          {/* GetSingleShoesWomen */}
+          <Route
+            path="/GetSingleShoesWomen"
+            element={<GetSingleShoesWomen />}
+          ></Route>
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

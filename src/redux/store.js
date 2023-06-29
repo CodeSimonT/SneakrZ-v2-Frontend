@@ -1,7 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import getAllShoes from "./cart/getAllShoes.js";
+import menShoes from "./cart/menShoes.js";
+import womenShoes from "./cart/womenShoes.js";
 export const store = configureStore({
   reducer: {
-    data: getAllShoes,
+    allShoes: getAllShoes,
+    allShoesMen: menShoes,
+    allShoesWomen: womenShoes,
   },
 });

@@ -6,6 +6,7 @@ import close from "./icons8-close-100.png";
 import facebook from "./icons8-facebook-100.png";
 import instagram from "./icons8-instagram-100.png";
 import twitter from "./icons8-twitter-100.png";
+import arrow from "./icons8-arrow-100.png";
 
 import nike from "./nike-logo.png";
 import adidas from "./adidas-logo.png";
@@ -25,4 +26,5 @@ export {
   adidas,
   newBalance,
   UA,
+  arrow,
 };

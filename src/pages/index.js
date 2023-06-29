@@ -8,13 +8,16 @@ import WomenShoes from "./WomenShoes";
 
 // for New & Featured
 //  feature
+import AllShoes from "./New&Featured/feature/AllShoes";
 import BestSellers from "./New&Featured/feature/BestSellers";
 import LatestShoes from "./New&Featured/feature/LatestShoes";
 import NewArrivals from "./New&Featured/feature/NewArrivals";
 // shop icons
-import AirForce1 from "./New&Featured/shopIcons/AirForce1";
-import AirJordan1 from "./New&Featured/shopIcons/AirJordan1";
-import AirMax from "./New&Featured/shopIcons/AirMax";
+import Nike from "./New&Featured/shopIcons/Nike";
+import Adidas from "./New&Featured/shopIcons/Adidas";
+import NewBalance from "./New&Featured/shopIcons/NewBalance";
+import UnderArmour from "./New&Featured/shopIcons/UnderArmour";
+
 // new for men
 import NewForMen from "./New&Featured/newForMen/NewForMen";
 // new for women
@@ -36,20 +39,19 @@ import Login from "./Login";
 // signup
 import SignUp from "./SignUp";
 
-// single shoes
-import SingleShoes from "./SingleShoes";
-
 export {
   MainPage,
   NotFound,
   MenShoes,
   WomenShoes,
+  AllShoes,
   BestSellers,
   LatestShoes,
   NewArrivals,
-  AirForce1,
-  AirJordan1,
-  AirMax,
+  Nike,
+  Adidas,
+  NewBalance,
+  UnderArmour,
   NewForMen,
   NewForWomen,
   ShopAllSales,
@@ -60,5 +62,4 @@ export {
   WomenSale,
   Login,
   SignUp,
-  SingleShoes,
 };

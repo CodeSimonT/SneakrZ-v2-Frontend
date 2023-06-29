@@ -4,8 +4,8 @@ import { styling } from "../../style/style.js";
 const Hero = () => {
   return (
     <>
-      <section className="py-5 mt-3" classname="py-5">
-        <div className="container-fluid Staatliches py-5">
+      <section className="">
+        <div className="container-fluid Staatliches">
           <div className="row position-relative">
             {/* hero title (absolute) */}
             <div
@@ -25,9 +25,9 @@ const Hero = () => {
             </div>
 
             {/* hero title (main) */}
-            <div className="col-lg-4 col-12 pt-5 ">
+            <div className="col-lg-4 col-12 ">
               <div
-                className={`d-flex d-lg-none flex-column text-center pt-5 pt-md-4 px-md-5`}
+                className={`d-flex d-lg-none flex-column text-center pt-3 pt-md-4 px-md-5`}
               >
                 <h1 className="heroHeadingStyle bold">
                   Step up your game with SneakrZ!
