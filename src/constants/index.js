@@ -167,14 +167,10 @@ export const FooterSubLinks = [
       },
       {
         id: 3,
-        title: "Delivery",
-      },
-      {
-        id: 4,
         title: "Payment Options",
       },
       {
-        id: 5,
+        id: 4,
         title: "Contact Us",
       },
     ],

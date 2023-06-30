@@ -65,7 +65,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="text-center pt-4 textGray">
-            © 2023 Nike, Inc. All Rights Reserved
+            © 2023 SneakrZ, Inc. All Rights Reserved
           </div>
         </div>
       </footer>
