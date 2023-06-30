@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ShoesLoop from "../../../middleware/ShoesLoopMen";
+import { PlaceHolder } from "../../../middleware";
 import {
   getAllNikeMen,
   getSingleNikeMen,
@@ -12,7 +13,7 @@ const Nike = () => {
   let container = [];
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { nikeItem } = useSelector((state) => state.allShoesMen);
+  const { nikeItem, loading } = useSelector((state) => state.allShoesMen);
 
   // function for selecting a single item
   // nike
@@ -28,6 +29,15 @@ const Nike = () => {
   useEffect(() => {
     console.log(container);
   }, []);
+
+  if (loading) {
+    return (
+      <>
+        <PlaceHolder />
+      </>
+    );
+  }
+
   return (
     <>
       <section className="pb-3 my-5 px-3">

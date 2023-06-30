@@ -2,9 +2,17 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { styling } from "../../style/style";
 import { arrow } from "../assets/icons/icons";
+import PlaceHolderSingle from "./PlaceHolderSingle";
 const GetSingleShoes = () => {
-  const { singleItem } = useSelector((state) => state.allShoesMen);
+  const { singleItem, loadingS } = useSelector((state) => state.allShoesMen);
   console.log(singleItem);
+  if (loadingS) {
+    return (
+      <>
+        <PlaceHolderSingle />
+      </>
+    );
+  }
   return (
     <>
       <section className="py-5 my-5 px-0 px-lg-5 urbanist">

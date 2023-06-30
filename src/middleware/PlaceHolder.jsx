@@ -1,34 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { styling } from "../../../../style/style.js";
-import { PlaceHolder } from "../../../middleware/index.js";
-
-import {
-  fetchAllShoes,
-  fetchSingleShoes,
-} from "../../../redux/cart/getAllShoes.js";
-
-const LatestShoes = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { items, loading } = useSelector((state) => state.allShoes);
-
-  const dispatchSingle = (id) => {
-    console.log(id);
-    dispatch(fetchSingleShoes({ id, navigate }));
-  };
-  useEffect(() => {
-    dispatch(fetchAllShoes());
-  }, [dispatch]);
-
-  if (loading) {
-    return (
-      <>
-        <PlaceHolder />
-      </>
-    );
-  }
+import React from "react";
+import { styling } from "../../style/style";
+const PlaceHolder = () => {
+  const dummyContent = Array.from({ length: 20 }, (_, index) => index + 1);
 
   return (
     <>
@@ -40,7 +13,7 @@ const LatestShoes = () => {
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
               <div className={`me-0 ${styling.CenterY}`}>
-                <h3>Latest Shoes {items?.task?.length} pieces </h3>
+                <h3>Shoes </h3>
               </div>
             </div>
             {/* right content */}
@@ -72,23 +45,20 @@ const LatestShoes = () => {
           </div>
           {/* grid container */}
           <div className="row">
-            {items?.task?.map((item) => (
+            {dummyContent.map((item) => (
               <div
                 className="col-12 col-md-6 col-lg-4 mb-4 pointer "
-                key={item._id}
-                onClick={() => dispatchSingle(item._id)}
+                key={item}
               >
-                <div className="card w-100 cardShadow urbanist">
-                  <img src={item.image} className="card-img-top" />
-                  <div className="card-body">
-                    <h6 className="card-title">{item.title} </h6>
-                    <p className="card-text footerTextColorGray">{item.for}</p>
-                    <p className="card-text footerTextColorGray">
-                      ${item.price}
-                    </p>
-                    <p className="card-text text- footerTextColorGray">
-                      {item.sale}
-                    </p>
+                <div className="card w-100 cardShadow urbanist placeholder-glow">
+                  <div className="card-img-top dummyImage placeholder col-12">
+                    item
+                  </div>
+                  <div className="card-body placeholder-glow">
+                    <h6 className="card-title placeholder col-7"></h6>
+                    <p className="card-text  placeholder col-6"></p>
+                    <p className="card-text  placeholder col-7"></p>
+                    <p className="card-text  placeholder col-6"></p>
                   </div>
                 </div>
               </div>
@@ -100,4 +70,4 @@ const LatestShoes = () => {
   );
 };
 
-export default LatestShoes;
+export default PlaceHolder;

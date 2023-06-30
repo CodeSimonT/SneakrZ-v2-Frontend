@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { PlaceHolder } from "../../../middleware/index.js";
+
 import {
   fetchAllShoes,
   fetchSingleShoes,
@@ -9,7 +11,7 @@ import {
 const NewArrivals = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { items } = useSelector((state) => state.allShoes);
+  const { items, loading } = useSelector((state) => state.allShoes);
 
   const dispatchSingle = (id) => {
     console.log(id);
@@ -18,6 +20,14 @@ const NewArrivals = () => {
   useEffect(() => {
     dispatch(fetchAllShoes());
   }, [dispatch]);
+
+  if (loading) {
+    return (
+      <>
+        <PlaceHolder />
+      </>
+    );
+  }
 
   return (
     <>

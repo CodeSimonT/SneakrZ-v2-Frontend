@@ -7,21 +7,25 @@ export const NavLinks = [
     Links: [
       {
         subTitle: "New & Featured",
-        subtoggel: "toggler1",
+        subtoggel: "toggle1",
         subLinks: [
           {
+            id: 1,
             hubTitle: "All Shoes",
             link: "/AllShoes",
           },
           {
+            id: 1,
             hubTitle: "Best Sellers",
             link: "/BestSellers",
           },
           {
+            id: 1,
             hubTitle: "Latest Shoes",
             link: "/LatestShoes",
           },
           {
+            id: 1,
             hubTitle: "New Arrivals",
             link: "/NewArrivals",
           },
@@ -32,18 +36,22 @@ export const NavLinks = [
         subtoggel: "toggler2",
         subLinks: [
           {
+            id: 1,
             hubTitle: "Nike",
             link: "/Nike",
           },
           {
+            id: 1,
             hubTitle: "Adidas",
             link: "/Adidas",
           },
           {
+            id: 1,
             hubTitle: "NewBalance",
             link: "/NewBalance",
           },
           {
+            id: 1,
             hubTitle: "UnderArmour",
             link: "/UnderArmour",
           },
@@ -54,6 +62,7 @@ export const NavLinks = [
         subtoggel: "toggler3",
         subLinks: [
           {
+            id: 1,
             hubTitle: "New For Men",
             link: "/NewForMen",
           },
@@ -64,6 +73,7 @@ export const NavLinks = [
         subtoggel: "toggler4",
         subLinks: [
           {
+            id: 1,
             hubTitle: "New For Women",
             link: "/NewForWomen",
           },
@@ -79,7 +89,7 @@ export const NavLinks = [
     Links: [
       {
         subTitle: "Featured",
-        subtoggel: "toggler5",
+        subtoggel: "toggle2",
         subLinks: [
           {
             hubTitle: "Shop All Sales",

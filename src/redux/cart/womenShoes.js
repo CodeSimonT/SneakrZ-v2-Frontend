@@ -113,6 +113,7 @@ const womenShoes = createSlice({
   name: "allShoesWomen",
   initialState: {
     loading: false,
+    loadingS: false,
     error: null,
     selectedItem: null,
     adidasItem: [],
@@ -150,19 +151,19 @@ const womenShoes = createSlice({
       })
       //for getSingleAddidasWomen
       .addCase(getSingleAddidasWomen.pending, (state) => {
-        state.loading = true;
+        state.loadingS = true;
         state.error = null;
         console.log("pending");
       })
 
       .addCase(getSingleAddidasWomen.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.singleItem = action.payload;
         console.log("fetch Single data");
       })
 
       .addCase(getSingleAddidasWomen.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.error = action.error.message;
         console.log("rejected");
       })
@@ -185,17 +186,17 @@ const womenShoes = createSlice({
       })
       //for getSingleNewbalanceWomen
       .addCase(getSingleNewbalanceWomen.pending, (state) => {
-        state.loading = true;
+        state.loadingS = true;
         state.error = null;
         console.log("pending");
       })
       .addCase(getSingleNewbalanceWomen.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.singleItem = action.payload;
         console.log("fetch Single data");
       })
       .addCase(getSingleNewbalanceWomen.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.error = action.error.message;
         console.log("rejected");
       })
@@ -223,19 +224,19 @@ const womenShoes = createSlice({
         console.log("pending");
       })
       .addCase(getSingleNikeWomen.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.singleItem = action.payload;
         console.log("fetch Single data");
       })
       .addCase(getSingleNikeWomen.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.error = action.error.message;
         console.log("rejected");
       })
 
       //for getAllUnderArmourWomen (underAmour)
       .addCase(getAllUnderArmourWomen.pending, (state) => {
-        state.loading = true;
+        state.loadingS = true;
         state.error = null;
         console.log("pending");
       })
@@ -251,17 +252,17 @@ const womenShoes = createSlice({
       })
       //for getSingleUnderArmourWomen
       .addCase(getSingleUnderArmourWomen.pending, (state) => {
-        state.loading = true;
+        state.loadingS = true;
         state.error = null;
         console.log("pending");
       })
       .addCase(getSingleUnderArmourWomen.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.singleItem = action.payload;
         console.log("fetch Single data");
       })
       .addCase(getSingleUnderArmourWomen.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.error = action.error.message;
         console.log("rejected");
       });

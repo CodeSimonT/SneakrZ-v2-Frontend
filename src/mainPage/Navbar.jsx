@@ -6,15 +6,27 @@ import { styling } from "../../style/style.js";
 // import navMobileView from "../middleware/navMobileView";
 
 const Navbar = () => {
-  // const [hover, setHover] = useState(false);
+  const [hoverState, setHoverState] = useState({});
+
+  const handleMouseEnter = (id) => {
+    // Handle the mouse enter event for the specific item
+    console.log(`Mouse entered item ${id}`);
+    setHoverState((prevState) => ({ ...prevState, [id]: true }));
+  };
+
+  const handleMouseLeave = (id) => {
+    // Handle the mouse leave event for the specific item
+    console.log(`Mouse left item ${id}`);
+    setHoverState((prevState) => ({ ...prevState, [id]: false }));
+  };
   return (
     <>
-      <nav className="navbar urbanist w-100 bg-white">
+      <nav className="navbar urbanist w-100 pt-3 bg-white">
         <div className="container-fluid px-0 d-flex justify-content-center">
           {/* grid container */}
           <div className="row containerF">
             {/* logo */}
-            <div className="col-6 col-lg-3 d-flex align-items-center py-2">
+            <div className="col-6 col-lg-3 d-flex align-items-center">
               <a className="navbar-brand" href="/">
                 <h3 className="urbanistBold mb-0 pointer">SneakrZ</h3>
               </a>
@@ -42,16 +54,20 @@ const Navbar = () => {
                 </div>
 
                 {/* nav web view */}
-                <div className="d-none d-lg-block" id="navbarSupportedContent">
-                  <ul className=" p-0 mb-0 d-flex w-100">
+                <div
+                  className="d-none d-lg-inline-block h-100"
+                  id="navbarSupportedContent"
+                >
+                  <ul className=" p-0 mb-0 d-flex w-100 h-100">
                     {NavLinks.map((item) => (
                       <li
                         key={item.id}
-                        className="me-4 navLinkF pointer py-2"
-                        type="button"
+                        className={`me-4 navLinkF pointer py-2`}
+                        onMouseEnter={() => handleMouseEnter(item.id)}
+                        onMouseLeave={() => handleMouseLeave(item.id)}
                         data-bs-toggle="collapse"
                         data-bs-target={`#${item.toggle}`}
-                        aria-expanded="false"
+                        aria-expanded={hoverState[item.id] ? "true" : "false"}
                         aria-controls={item.toggle}
                       >
                         {item.title}
@@ -98,7 +114,10 @@ const Navbar = () => {
                       className="offcanvas-title bold"
                       id="offcanvasWithBothOptionsLabel"
                     >
-                      <a href="/"> SneakrZ</a>
+                      <a href="/" className="text-black">
+                        {" "}
+                        SneakrZ
+                      </a>
                     </h4>
                     {/* button */}
                     <div data-bs-dismiss="offcanvas" aria-label="Close">
@@ -276,7 +295,16 @@ const Navbar = () => {
             {NavLinks.map((item) => (
               <div
                 key={item.id}
-                className="collapse collapseW"
+                className={`collapse collapseW pt-3 ${
+                  hoverState[item.id] ? "show" : ""
+                }`}
+                style={{
+                  transition: "height 0.3s ease",
+                  maxHeight: hoverState[item.id] ? "1000px" : "0",
+                  overflow: "hidden",
+                }}
+                onMouseEnter={() => handleMouseEnter(item.id)}
+                onMouseLeave={() => handleMouseLeave(item.id)}
                 id={item.toggle}
               >
                 {/* grid container */}
@@ -291,6 +319,7 @@ const Navbar = () => {
                             <Link
                               to={value.link}
                               className="removeUnderline navbarSubTextColor"
+                              onClick={() => handleMouseLeave(value.id)}
                             >
                               {value.hubTitle}
                             </Link>

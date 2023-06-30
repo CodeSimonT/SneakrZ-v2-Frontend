@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ShoesLoopWomen from "../../../middleware/ShoesLoopWomen.jsx";
 import { arrow } from "../../../assets/icons/icons.js";
+import { PlaceHolder } from "../../../middleware";
+
 import { styling } from "../../../../style/style.js";
 import {
   getAllAddidasWomen,
@@ -22,9 +24,8 @@ const NewForWomen = () => {
   let container = [];
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { adidasItem, newBalanceItem, nikeItem, underArmourItem } = useSelector(
-    (state) => state.allShoesWomen
-  );
+  const { adidasItem, newBalanceItem, nikeItem, underArmourItem, loading } =
+    useSelector((state) => state.allShoesWomen);
 
   // function for selecting a single item
   // nike
@@ -58,9 +59,13 @@ const NewForWomen = () => {
     // container.push(adidasItem?.task);
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(container);
-  }, []);
+  if (loading) {
+    return (
+      <>
+        <PlaceHolder />
+      </>
+    );
+  }
   return (
     <>
       <section className="pb-3 my-5 px-3">

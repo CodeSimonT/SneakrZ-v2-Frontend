@@ -28,6 +28,7 @@ const getAllShoes = createSlice({
   name: "allShoes",
   initialState: {
     loading: false,
+    loadingS: false,
     error: null,
     selectedItem: null,
     items: [],
@@ -62,19 +63,19 @@ const getAllShoes = createSlice({
       })
       //for fetchSingleShoes
       .addCase(fetchSingleShoes.pending, (state) => {
-        state.loading = true;
+        state.loadingS = true;
         state.error = null;
         console.log("pending");
       })
 
       .addCase(fetchSingleShoes.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.singleItem = action.payload;
         console.log("fetch Single data");
       })
 
       .addCase(fetchSingleShoes.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingS = false;
         state.error = action.error.message;
         console.log("rejected");
       });

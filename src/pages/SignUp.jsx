@@ -44,7 +44,7 @@ function Signup() {
           </div>
           <p className="text-end mt-2">
             Already Registered
-            <Link to="/" className="ms-2 footerTextColorGray">
+            <Link to="/Login" className="ms-2 footerTextColorGray">
               Sign in
             </Link>
           </p>

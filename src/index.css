@@ -41,6 +41,7 @@
   background: #555;
 }
 /* globals */
+
 li {
   list-style: none;
 }
@@ -137,10 +138,10 @@ h5 {
 .descriptionC {
   color: var(--dark);
 }
-/* .accordion-button::after {
-  transform: none !important;
-  transition: none !important;
-} */
+.dummyImage {
+  height: 200px;
+}
+
 .accordionButtonStyle1 {
   width: 100%;
   border-bottom: 1.5px solid var(--darkgray);
@@ -150,6 +151,27 @@ h5 {
   width: 100%;
   border-bottom: 1.5px solid var(--darkgray);
 }
+.PlaceHolderImage {
+  width: 100%;
+  height: 450px;
+}
+.linkss {
+  background-color: green;
+}
+.collapse-content {
+  transition: height 0.3s ease;
+  height: 0;
+  overflow: hidden;
+}
+
+.collapse-content.show {
+  height: auto;
+}
+
+.navLinkF:hover + .collapse .collapse-content {
+  height: auto;
+}
+
 /* end globals */
 
 /* ShoesItem style */

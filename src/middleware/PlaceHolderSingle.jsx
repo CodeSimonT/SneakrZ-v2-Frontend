@@ -1,66 +1,61 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { styling } from "../../style/style";
 import { arrow } from "../assets/icons/icons";
-import PlaceHolderSingle from "./PlaceHolderSingle";
 
-const GetSingleShoes = () => {
-  const { singleItem, loadingS } = useSelector((state) => state.allShoesWomen);
-  console.log(singleItem);
-  if (loadingS) {
-    return (
-      <>
-        <PlaceHolderSingle />
-      </>
-    );
-  }
+const PlaceHolderSingle = () => {
+  const dummyContent = Array.from({ length: 20 }, (_, index) => index + 1);
   return (
     <>
       <section className="py-5 my-5 px-0 px-lg-5 urbanist">
         <div className="container-fluid ">
           <div className="row">
             {/* image container */}
-            <div className="col-12 col-lg-7 position-relative">
+            <div className="col-12 col-lg-7 position-relative placeholder-glow">
               <div className="position-sticky top-0 w-100 px-0 px-lg-3">
-                <img src={singleItem?.task.image} alt="" className="w-100" />
+                <div className="PlaceHolderImage placeholder"></div>
               </div>
             </div>
             {/* text container */}
             <div className="col-12 col-lg-5">
               <div className="px-0 px-lg-3 mt-2">
                 {/* heading */}
-                <div className="mb-5">
-                  <h1 className="Staatliches mb-2">{singleItem?.task.title}</h1>
-                  <h5 className="mb-4">{singleItem?.task.for}</h5>
-                  <h5>${singleItem?.task.price}</h5>
+                <div className="mb-5 placeholder-glow">
+                  <h1 className="Staatliches mb-2 w-75 placeholder">1</h1>
+                  <h5 className="mb-4 w-75 placeholder">2</h5>
+                  <h5 className="w-50 placeholder">3</h5>
                 </div>
                 {/* size */}
                 <div>
-                  <div className="d-flex justify-content-between mb-2">
-                    <h6>Select Size</h6>
-                    <h6 className="colorGray">Size Guide</h6>
+                  <div className="d-flex justify-content-between mb-2 placeholder-glow">
+                    <h6 className="placeholder">Select Size</h6>
+                    <h6 className="placeholder">Size Guide</h6>
                   </div>
                 </div>
                 {/* size */}
                 <div className="px-2">
-                  <div className="row">
-                    {singleItem?.task.size.map((item, index) => (
-                      <div className="col-4 px-1 pb-2 pointer " key={index}>
-                        <div className="sizeContainer">{item}</div>
+                  <div className="row placeholder-glow">
+                    {dummyContent.map((item) => (
+                      <div className="col-4 px-1 pb-2 pointer  " key={item}>
+                        <div className="sizeContainer w-100 placeholder"></div>
                       </div>
                     ))}
                   </div>
                 </div>
                 {/* add button */}
-                <div className="addButton pointer w-100 py-3 mt-2 rounded-pill text-center">
-                  <h5 className="mb-0 text-white pointer ">Add to Bag</h5>
+                <div className="addButton pointer w-100 py-3 mt-2 rounded-pill text-center placeholder-glow">
+                  <h5 className="mb-0 text-white pointer placeholder">
+                    Add to Bag
+                  </h5>
                 </div>
-                <div className="addButton2 pointer w-100 py-3 mt-3 rounded-pill text-center">
-                  <h5 className="mb-0 pointer ">Favorite</h5>
+                <div className="addButton2 pointer w-100 py-3 mt-3 rounded-pill text-center placeholder-glow">
+                  <h5 className="mb-0 pointer placeholder">Favorite</h5>
                 </div>
                 {/* description */}
-                <div className="mt-5 mb-5">
-                  <p className="">{singleItem?.task.description} </p>
+                <div className="mt-5 mb-5 placeholder-glow">
+                  <p className="placeholder col-12"></p>
+                  <p className="placeholder col-12"></p>
+                  <p className="placeholder col-12"></p>
+                  <p className="placeholder col-12"></p>
                 </div>
                 {/* accordions */}
                 <div
@@ -78,8 +73,10 @@ const GetSingleShoes = () => {
                         aria-expanded="false"
                         aria-controls="flush-collapseTwo"
                       >
-                        <div className={`${styling.CenterY} `}>
-                          <h4 className="pointer">Free Delivery and Returns</h4>
+                        <div className={`${styling.CenterY} placeholder-glow`}>
+                          <h4 className="pointer placeholder ">
+                            Free Delivery and Returns
+                          </h4>
                         </div>
                         <div className="accordionIconW pointer">
                           <img src={arrow} alt="" className="w-100" />
@@ -119,8 +116,8 @@ const GetSingleShoes = () => {
                         aria-expanded="false"
                         aria-controls="flush-collapseTwo"
                       >
-                        <div className={styling.CenterY}>
-                          <h4 className="pointer">Reviews</h4>
+                        <div className={`${styling.CenterY} placeholder-glow`}>
+                          <h4 className="pointer placeholder">Reviews</h4>
                         </div>
                         <div className="accordionIconW">
                           <img src={arrow} alt="" className="w-100" />
@@ -146,4 +143,4 @@ const GetSingleShoes = () => {
   );
 };
 
-export default GetSingleShoes;
+export default PlaceHolderSingle;
