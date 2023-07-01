@@ -94,6 +94,34 @@
 .accordion-border {
   border: none;
 }
+.searchResult {
+  background-color: var(--gray);
+  border-radius: 5px;
+  max-height: 150px;
+  overflow-y: scroll;
+  z-index: 1000000;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50px;
+}
+.searchResult::-webkit-scrollbar {
+  width: 2px; /* Set the width of the scrollbar */
+}
+.searchResult::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+}
+.linkStyle {
+  border: 1px solid var(--footerTextColor);
+  border-radius: 3px;
+  padding-left: 2px;
+  margin-bottom: 3px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.linkStyle:hover {
+  opacity: 0.7;
+}
 /* navbar media query */
 @media screen and (max-width: 992px) {
   .navSearchResposive {

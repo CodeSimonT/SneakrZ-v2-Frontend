@@ -1,13 +1,46 @@
 import { useState, useEffect } from "react";
 import { NavLinks } from "../constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { bag, heart, menu, search, close } from "../assets/icons/icons.js";
 import { styling } from "../../style/style.js";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllShoes, fetchSingleShoes } from "../redux/cart/getAllShoes";
+
 // import navMobileView from "../middleware/navMobileView";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [hoverState, setHoverState] = useState({});
+  const [data, setData] = useState({ task: [] });
+  const [filter, setFilter] = useState([]);
+  const [value, setValue] = useState("");
+  const { items, loading } = useSelector((state) => state.allShoes);
 
+  const dispatchSingle = (id) => {
+    console.log(id);
+    dispatch(fetchSingleShoes({ id, navigate }));
+  };
+
+  useEffect(() => {
+    dispatch(fetchAllShoes());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setData(items);
+    console.log(items);
+    console.log(data);
+  }, [loading]);
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toUpperCase();
+    setValue(query);
+
+    const filterItem = data.task.filter((item) =>
+      item.title.toUpperCase().includes(query)
+    );
+    setFilter(filterItem);
+  };
   const handleMouseEnter = (id) => {
     // Handle the mouse enter event for the specific item
     console.log(`Mouse entered item ${id}`);
@@ -40,7 +73,9 @@ const Navbar = () => {
                   <div
                     className={`${styling.flexCenter} pointer me-3 d-block d-lg-none`}
                   >
-                    <img src={bag} alt="" className="navImgW" />
+                    <Link to={"/AddToCart"}>
+                      <img src={bag} alt="" className="navImgW" />
+                    </Link>
                   </div>
                   {/* mobile view button */}
                   <button
@@ -263,17 +298,39 @@ const Navbar = () => {
                 role="search"
               >
                 <div
-                  className={`${styling.flexCenter} backColorGray me-0 me-lg-4 rounded-pill w-100`}
+                  className={`d-flex flex-column backColorGray me-0 me-lg-4 rounded-pill w-100 position-relative`}
                 >
                   <div
-                    className={`${styling.flexCenter} searchHover rounded-circle p-2 me-1 pointer`}
+                    className={`${styling.flexCenter} backColorGray me-0 me-lg-4 rounded-pill w-100`}
                   >
-                    <img src={search} alt="" className="navImgW" />
+                    <div
+                      className={`${styling.flexCenter} searchHover rounded-circle p-2 me-1 pointer`}
+                    >
+                      <img src={search} alt="" className="navImgW" />
+                    </div>
+                    <input
+                      className="navBorderStyle navSearchResposive"
+                      placeholder="Search"
+                      value={value}
+                      onChange={handleSearch}
+                    ></input>
                   </div>
-                  <input
-                    className="navBorderStyle navSearchResposive"
-                    placeholder="Search"
-                  ></input>
+                  <div className="searchResult">
+                    {value &&
+                      filter.map((item) => (
+                        <li
+                          key={item.id}
+                          className="linkStyle m-2"
+                          onClick={() => {
+                            dispatchSingle(item._id),
+                              setFilter([]),
+                              setValue("");
+                          }}
+                        >
+                          {item.title}
+                        </li>
+                      ))}
+                  </div>
                 </div>
                 {/* heart */}
                 <div
@@ -285,7 +342,9 @@ const Navbar = () => {
                 <div
                   className={`${styling.flexCenter} pointer d-none d-lg-block`}
                 >
-                  <img src={bag} alt="" className="navImgW" />
+                  <Link to={"/AddToCart"}>
+                    <img src={bag} alt="" className="navImgW" />
+                  </Link>
                 </div>
               </form>
             </div>
