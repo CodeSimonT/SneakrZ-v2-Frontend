@@ -18,13 +18,37 @@ import { styling } from "../../style/style.js";
 
 const MenShoes = () => {
   const [count, setCount] = useState(0);
+  const [value, setValue] = useState([]);
   const [toggle, setToggle] = useState("Nike");
-  const [toggle2, setToggle2] = useState("Price: Low-High");
+  const [toggle2, setToggle2] = useState("Sort by Price");
   let container = [];
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { adidasItem, newBalanceItem, nikeItem, underArmourItem, loading } =
     useSelector((state) => state.allShoesMen);
+
+  // sorting
+  useEffect(() => {
+    if (toggle2 === "Price: Low-High") {
+      const maxValue = [...value].sort((a, b) => a.price - b.price);
+      setValue(maxValue);
+    } else {
+      const minValue = [...value]?.sort((a, b) => b.price - a.price);
+      setValue(minValue);
+    }
+  }, [toggle2, toggle]);
+  // store to value state
+  useEffect(() => {
+    if (toggle === "Nike") {
+      setValue(nikeItem.task);
+    } else if (toggle === "Adidas") {
+      setValue(adidasItem.task);
+    } else if (toggle === "NewBalance") {
+      setValue(newBalanceItem.task);
+    } else if (toggle === "Under Armour") {
+      setValue(underArmourItem.task);
+    }
+  }, [nikeItem.task, adidasItem.task, toggle]);
 
   // function for selecting a single item
   // nike
@@ -75,16 +99,7 @@ const MenShoes = () => {
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
               <div className={`me-0 ${styling.CenterY}`}>
-                <h3>
-                  {" "}
-                  Men's Shoes{" "}
-                  {(toggle === "Nike" && nikeItem?.task?.length) ||
-                    (toggle === "Adidas" && adidasItem?.task?.length) ||
-                    (toggle === "NewBalance" && newBalanceItem?.task?.length) ||
-                    (toggle === "Under Armour" &&
-                      underArmourItem?.task?.length)}{" "}
-                  pieces{" "}
-                </h3>
+                <h3> Men's Shoes {value?.length} pieces </h3>
               </div>
               {/* dropdown */}
               <div className={`dropdown ${styling.CenterY} ms-0 ms-lg-4`}>
@@ -94,8 +109,8 @@ const MenShoes = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-4 mb-0">Brand: {toggle}</p>
-                  <div className="accordionIconW ms-2">
+                  <p className="fs-5 mb-0 pointer">Brand: {toggle}</p>
+                  <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
                 </div>
@@ -131,12 +146,12 @@ const MenShoes = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-4 mb-0">{toggle2}</p>
-                  <div className="accordionIconW ms-2">
+                  <p className="fs-5 mb-0 pointer">{toggle2}</p>
+                  <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
                 </div>
-                <ul className="dropdown-menu px-3 fs-5">
+                <ul className="dropdown-menu px-2 fs-5">
                   <li
                     className="pointer"
                     onClick={() => setToggle2("Price: High-Low")}
@@ -157,7 +172,7 @@ const MenShoes = () => {
           <div className="row">
             {/* nike */}
             {toggle === "Nike" &&
-              nikeItem?.task?.map((item) => (
+              value?.map((item) => (
                 <ShoesLoopMen
                   value={item}
                   key={item._id}
@@ -166,7 +181,7 @@ const MenShoes = () => {
               ))}
             {/* adidas */}
             {toggle === "Adidas" &&
-              adidasItem?.task?.map((item) => (
+              value?.map((item) => (
                 <ShoesLoopMen
                   value={item}
                   key={item._id}
@@ -175,7 +190,7 @@ const MenShoes = () => {
               ))}
             {/* newBalance */}
             {toggle === "NewBalance" &&
-              newBalanceItem?.task?.map((item) => (
+              value?.map((item) => (
                 <ShoesLoopMen
                   value={item}
                   key={item._id}
@@ -184,7 +199,7 @@ const MenShoes = () => {
               ))}
             {/* underArmour */}
             {toggle === "Under Armour" &&
-              underArmourItem?.task?.map((item) => (
+              value?.map((item) => (
                 <ShoesLoopMen
                   value={item}
                   key={item._id}

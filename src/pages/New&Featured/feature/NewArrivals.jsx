@@ -1,34 +1,46 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { PlaceHolder } from "../../../middleware/index.js";
-
+import FeatureLoop from "../../../middleware/FeatureLoop.jsx";
+import { PlaceHolder } from "../../../middleware";
 import {
-  fetchAllShoes,
-  fetchSingleShoes,
-} from "../../../redux/cart/getAllShoes.js";
+  getAllNikeMen,
+  getSingleNikeMen,
+} from "../../../redux/cart/menShoes.js";
+import {
+  getAllNikeWomen,
+  getSingleNikeWomen,
+} from "../../../redux/cart/womenShoes.js";
+import { styling } from "../../../../style/style.js";
 
 const NewArrivals = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { items, loading } = useSelector((state) => state.allShoes);
-
-  const dispatchSingle = (id) => {
+  const nikeMen = useSelector((state) => state.allShoesMen);
+  const nikeWomen = useSelector((state) => state.allShoesWomen);
+  // function for selecting a single item
+  // adidas
+  const dispatchSingleNikeMenn = (id) => {
     console.log(id);
-    dispatch(fetchSingleShoes({ id, navigate }));
+    dispatch(getSingleNikeMen({ id, navigate }));
   };
+  const dispatchSingleNikeWomen = (id) => {
+    console.log(id);
+    dispatch(getSingleNikeWomen({ id, navigate }));
+  };
+
   useEffect(() => {
-    dispatch(fetchAllShoes());
+    dispatch(getAllNikeMen());
+    dispatch(getAllNikeWomen());
   }, [dispatch]);
 
-  if (loading) {
+  if (nikeMen.loading && nikeWomen.loading) {
     return (
       <>
         <PlaceHolder />
       </>
     );
   }
-
   return (
     <>
       <section className="pb-3 my-5 px-3">
@@ -38,59 +50,33 @@ const NewArrivals = () => {
             {/* left content */}
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
-              <div className={`me-0 mb-2 `}>
-                <h3>New Arrivals {items?.task?.length} pieces </h3>
-              </div>
-            </div>
-            {/* right content */}
-            <div>
-              {/* sort */}
-              <div className="dropdown">
-                <button
-                  className="btn dropdown-toggle fs-5"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Sort By
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Price: High-Low
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Price: Low-High
-                    </a>
-                  </li>
-                </ul>
+              <div className={`me-0 ${styling.CenterY}`}>
+                <h3>
+                  New Arrivals{" "}
+                  {nikeMen.nikeItem.task?.length +
+                    nikeWomen.nikeItem.task?.length}{" "}
+                  pieces
+                </h3>
               </div>
             </div>
           </div>
           {/* grid container */}
           <div className="row">
-            {items?.task?.map((item) => (
-              <div
-                className="col-12 col-md-6 col-lg-4 mb-4 pointer "
+            {/* men */}
+            {nikeMen.nikeItem.task?.map((item) => (
+              <FeatureLoop
+                value={item}
                 key={item._id}
-                onClick={() => dispatchSingle(item._id)}
-              >
-                <div className="card w-100 cardShadow urbanist">
-                  <img src={item.image} className="card-img-top" />
-                  <div className="card-body">
-                    <h6 className="card-title">{item.title} </h6>
-                    <p className="card-text footerTextColorGray">{item.for}</p>
-                    <p className="card-text footerTextColorGray">
-                      ${item.price}
-                    </p>
-                    <p className="card-text text- footerTextColorGray">
-                      {item.sale}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                propDispatch={dispatchSingleNikeMenn}
+              />
+            ))}
+            {/* Women */}
+            {nikeWomen.nikeItem.task?.map((item) => (
+              <FeatureLoop
+                value={item}
+                key={item._id}
+                propDispatch={dispatchSingleNikeWomen}
+              />
             ))}
           </div>
         </div>

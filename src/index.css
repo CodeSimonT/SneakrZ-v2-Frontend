@@ -172,7 +172,15 @@ h5 {
 .navLinkF:hover + .collapse .collapse-content {
   height: auto;
 }
-
+.crossedOut {
+  text-decoration: line-through;
+}
+.yellowGreen {
+  color: #6bde37;
+}
+/* .card-img-top {
+  max-height: 300px;
+} */
 /* end globals */
 
 /* ShoesItem style */
