@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { styling } from "../../../../style/style.js";
 import { PlaceHolder } from "../../../middleware/index.js";
 import { arrow } from "../../../assets/icons/icons.js";
+import axios from "axios";
 import {
   fetchAllShoes,
   fetchSingleShoes,

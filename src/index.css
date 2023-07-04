@@ -178,9 +178,9 @@ h5 {
 .yellowGreen {
   color: #6bde37;
 }
-/* .card-img-top {
-  max-height: 300px;
-} */
+.borderB {
+  border-bottom: 0.3px solid black;
+}
 /* end globals */
 
 /* ShoesItem style */

@@ -36,6 +36,8 @@ import {
   WomenSale,
   Login,
   SignUp,
+  //
+  AddToCart,
 } from "./pages";
 
 import {
@@ -88,6 +90,8 @@ const App = () => {
           <Route path="/Login" element={<Login />}></Route>
           {/* signup */}
           <Route path="/SignUp" element={<SignUp />}></Route>
+          {/* add to cart */}
+          <Route path="/AddToCart" element={<AddToCart />}></Route>
 
           {/* single shoes */}
           <Route path="/SingleShoes" element={<SingleShoes />}></Route>

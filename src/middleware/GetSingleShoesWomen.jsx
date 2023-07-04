@@ -1,12 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { styling } from "../../style/style";
 import { arrow } from "../assets/icons/icons";
 import PlaceHolderSingle from "./PlaceHolderSingle";
+import { addCart } from "../redux/feature/authSlice.js";
 
-const GetSingleShoes = () => {
+const GetSingleShoesWomen = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { token } = JSON.parse(localStorage.getItem("user"));
+  const [formData, setFormData] = useState([]);
   const { singleItem, loadingS } = useSelector((state) => state.allShoesWomen);
-  console.log(singleItem);
+
+  const dispatchItem = () => {
+    dispatch(addCart({ formData: formData, token: token, navigate }));
+  };
+
+  useEffect(() => {
+    setFormData(singleItem?.task);
+  }, [dispatch]);
+
   if (loadingS) {
     return (
       <>
@@ -52,7 +66,10 @@ const GetSingleShoes = () => {
                   </div>
                 </div>
                 {/* add button */}
-                <div className="addButton pointer w-100 py-3 mt-2 rounded-pill text-center">
+                <div
+                  className="addButton pointer w-100 py-3 mt-2 rounded-pill text-center"
+                  onClick={dispatchItem}
+                >
                   <h5 className="mb-0 text-white pointer ">Add to Bag</h5>
                 </div>
                 <div className="addButton2 pointer w-100 py-3 mt-3 rounded-pill text-center">
@@ -146,4 +163,4 @@ const GetSingleShoes = () => {
   );
 };
 
-export default GetSingleShoes;
+export default GetSingleShoesWomen;

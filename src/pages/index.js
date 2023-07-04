@@ -39,6 +39,9 @@ import Login from "./Login";
 // signup
 import SignUp from "./SignUp";
 
+// add to cart
+import AddToCart from "./AddToCart";
+
 export {
   MainPage,
   NotFound,
@@ -62,4 +65,5 @@ export {
   WomenSale,
   Login,
   SignUp,
+  AddToCart,
 };

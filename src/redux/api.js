@@ -86,3 +86,27 @@ export const getAllUnderArmourWomen = () => {
 export const getSingleUnderArmourWomen = (id) => {
   return API.get(`/shoes/getSingleUnderArmourWomen/${id}`);
 };
+
+export const login = (formData) => API.post("/user/login", formData);
+export const register = (formData) => API.post("/user/register", formData);
+
+export const addToCart = (formData, token) =>
+  API.post("/user/addToCart", formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const deleteData = (token, id) =>
+  API.delete(`/user/deleteCart/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const readData = (token) =>
+  API.get("/user/retriveCart", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
