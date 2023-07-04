@@ -14,15 +14,11 @@ function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
-  const { email, password, firstname, lastname, confirmPassword } = formData;
+  const { email, password, firstname, lastname } = formData;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      console.log(`incorrect password`);
-      return;
-    }
-    if (email && password && firstname && lastname && confirmPassword) {
+    if (email && password && firstname && lastname) {
       dispatch(register({ formData, navigate }));
       console.log("form complete");
     }
@@ -77,17 +73,6 @@ function Signup() {
               type="password"
               value={password}
               name="password"
-              placeholder="Enter Password"
-              className="form-control"
-              onChange={onInputChange}
-            />
-          </div>
-          <div className="mb-2">
-            <label htmlFor="password">Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              name="confirmPassword"
               placeholder="Enter Password"
               className="form-control"
               onChange={onInputChange}

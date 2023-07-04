@@ -7,9 +7,11 @@ import PlaceHolderSingle from "./PlaceHolderSingle";
 import { addCart } from "../redux/feature/authSlice.js";
 
 const GetSingleShoesWomen = () => {
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGEzOTA5YjRmMDlmOTdlYWY4ZTFkMWQiLCJpYXQiOjE2ODg0NDE2NzMsImV4cCI6NDg0NDIwMTY3M30.seEQh3ub0QkAZvLTyp3Ib2LE4qUJMgErkzI9N5ksdDo";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = JSON.parse(localStorage.getItem("user"));
+  // const { token } = JSON.parse(localStorage.getItem("user"));
   const [formData, setFormData] = useState([]);
   const { singleItem, loadingS } = useSelector((state) => state.allShoesWomen);
 

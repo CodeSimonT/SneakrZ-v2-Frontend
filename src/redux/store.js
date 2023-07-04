@@ -4,7 +4,6 @@ import menShoes from "./cart/menShoes.js";
 import womenShoes from "./cart/womenShoes.js";
 import authSlice from "./feature/authSlice.js";
 import userData from "./cart/userData.js";
-import DeleteDataData from "./cart/deleteData.js";
 export const store = configureStore({
   reducer: {
     allShoes: getAllShoes,
@@ -12,6 +11,5 @@ export const store = configureStore({
     allShoesWomen: womenShoes,
     auth: authSlice,
     data: userData,
-    deletedata: DeleteDataData,
   },
 });

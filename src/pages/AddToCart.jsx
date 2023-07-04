@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../redux/cart/userData.js";
-import { deleteUserData } from "../redux/cart/deleteData.js";
+// import { deleteUserData } from "../redux/cart/deleteData.js";
 
 const AddToCart = () => {
   const [total, setTotal] = useState(0);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGEzOTA5YjRmMDlmOTdlYWY4ZTFkMWQiLCJpYXQiOjE2ODg0NDE2NzMsImV4cCI6NDg0NDIwMTY3M30.seEQh3ub0QkAZvLTyp3Ib2LE4qUJMgErkzI9N5ksdDo";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = JSON.parse(localStorage.getItem("user"));
+  // const { token } = JSON.parse(localStorage.getItem("user"));
   const { items, loading } = useSelector((item) => item.data);
 
-  const deleteItem = (id) => {
-    dispatch(deleteUserData({ token: token, id, navigate }));
-  };
+  // const deleteItem = (id) => {
+  //   dispatch(deleteUserData({ token: token, id, navigate }));
+  // };
   useEffect(() => {
     dispatch(getUserData({ token: token, navigate }));
     console.log(items);
@@ -62,7 +64,7 @@ const AddToCart = () => {
                         <h6 className="colorGray">Quantity {item.quantity}</h6>
                         <h5
                           className="pointer mt-5"
-                          onClick={() => deleteItem(item._id)}
+                          // onClick={() => deleteItem(item._id)}
                         >
                           remove
                         </h5>
