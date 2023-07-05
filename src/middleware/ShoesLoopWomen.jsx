@@ -32,7 +32,7 @@ const ShoesLoopWomen = (props) => {
               ${props.value.price}
             </p>
           </span>
-          <p className="card-text yellowGreen">{props.value.sale} Off</p>
+          <p className="card-text yellowGreen">{props.value.sale}% Off</p>
         </div>
       </div>
     </div>
