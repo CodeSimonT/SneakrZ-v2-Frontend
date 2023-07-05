@@ -11,6 +11,7 @@ const initialState = {
 };
 
 function Signup() {
+  const [toggle, setToggle] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
@@ -27,6 +28,9 @@ function Signup() {
       console.log("form complete");
     }
   };
+  const toggler = () => {
+    setToggle;
+  };
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,75 +38,92 @@ function Signup() {
   };
 
   return (
-    <div className="signup template d-flex justify-content-center align-items-center w-100">
-      <div className="form-container p-5 rounded roounded bg-white w-100 d-flex justify-content-center align-items-center vh-100">
-        <form className="w-50" onSubmit={handleSubmit}>
-          <h3 className="text-center">Sign Up</h3>
-          <div className="mb-2">
-            <label htmlFor="fname">First Name</label>
-            <input
-              type="text"
-              value={firstname}
-              name="firstname"
-              placeholder="Enter First Name"
-              className="form-control remove-outline"
-              onChange={onInputChange}
-            />
+    <div className="py-4 urbanist">
+      <div className="container-fluid">
+        <div className="row align-items-center justify-content-center">
+          <div className="col-12 col-sm-7 ">
+            <form className="w-100" onSubmit={handleSubmit}>
+              <h1 className="text-center mb-4 urbanistBold">Sign Up</h1>
+              {/* first name */}
+              <div className="form-floating mb-3">
+                <input
+                  type="text"
+                  value={firstname}
+                  name="firstname"
+                  placeholder="Enter First Name"
+                  className="form-control removeOut"
+                  onChange={onInputChange}
+                />
+                <label for="floatingInput">First Name</label>
+              </div>
+              {/* Last name */}
+              <div className="form-floating mb-3">
+                <input
+                  type="text"
+                  value={lastname}
+                  name="lastname"
+                  placeholder="Enter Last Name"
+                  className="form-control"
+                  onChange={onInputChange}
+                />
+                <label for="floatingInput">Last Name</label>
+              </div>
+              {/* Email */}
+              <div className="form-floating mb-3">
+                <input
+                  type="email"
+                  value={email}
+                  name="email"
+                  placeholder="Enter Email"
+                  className="form-control"
+                  onChange={onInputChange}
+                />
+                <label for="floatingInput">Email</label>
+              </div>
+              {/* Password */}
+              <div className="form-floating mb-3">
+                <input
+                  type={!toggle ? "password" : "text"}
+                  value={password}
+                  name="password"
+                  placeholder="Enter Password"
+                  className="form-control"
+                  onChange={onInputChange}
+                />
+                <label for="floatingInput">Password</label>
+              </div>
+              {/* confirm */}
+              <div className="form-floating mb-2">
+                <input
+                  type={!toggle ? "password" : "text"}
+                  value={confirmPassword}
+                  name="confirmPassword"
+                  placeholder="Enter Password"
+                  className="form-control"
+                  onChange={onInputChange}
+                />
+                <label for="floatingInput">Confirm password</label>
+              </div>
+
+              <button
+                onClick={() => setToggle((prev) => !prev)}
+                className="mb-3 buttonS "
+              >
+                Show password
+              </button>
+              {/*  */}
+              <div className="d-grid">
+                <button className="btn bg-black text-white">Sign Up</button>
+              </div>
+              <p className="text-end mt-2">
+                Already Registered ?
+                <Link to="/Login" className="ms-2 footerTextColorGray">
+                  Login
+                </Link>
+              </p>
+            </form>
           </div>
-          <div className="mb-2">
-            <label htmlFor="lname">Last Name</label>
-            <input
-              type="text"
-              value={lastname}
-              name="lastname"
-              placeholder="Enter Last Name"
-              className="form-control"
-              onChange={onInputChange}
-            />
-          </div>
-          <div className="mb-2">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              value={email}
-              name="email"
-              placeholder="Enter Email"
-              className="form-control"
-              onChange={onInputChange}
-            />
-          </div>
-          <div className="mb-2">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              value={password}
-              name="password"
-              placeholder="Enter Password"
-              className="form-control"
-              onChange={onInputChange}
-            />
-          </div>
-          <div className="mb-2">
-            <label htmlFor="password">Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              name="confirmPassword"
-              placeholder="Enter Password"
-              className="form-control"
-              onChange={onInputChange}
-            />
-          </div>
-          <div className="d-grid">
-            <button className="btn bg-black text-white">Sign Up</button>
-          </div>
-          <p className="text-end mt-2">
-            Already Registered
-            <Link to="/Login" className="ms-2 footerTextColorGray">
-              Sign in
-            </Link>
-          </p>
-        </form>
+        </div>
       </div>
     </div>
   );

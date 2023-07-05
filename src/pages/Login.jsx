@@ -28,57 +28,53 @@ function Login() {
   };
 
   return (
-    <div className="login template d-flex justify-content-center align-items-center w-100">
-      <div className="form-container p-5 rounded rounded bg-white d-flex w-100 justify-content-center align-items-center vh-100">
-        <form className="w-50" onSubmit={handleSubmit}>
-          <h3 className="text-center ">Sign In</h3>
-          <div className="mb-2">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              value={email}
-              name="email"
-              onChange={onInputChange}
-              placeholder="Enter Email"
-              className="form-control"
-            />
+    <div className="py-4 urbanist">
+      <div className="container-fluid">
+        <div className="row align-items-center justify-content-center">
+          <div className="col-12 col-sm-7 ">
+            <form className="w-100" onSubmit={handleSubmit}>
+              <h2 className="text-center mb-4 urbanistBold">Sign In</h2>
+              {/* email */}
+              <div className="form-floating mb-3">
+                <input
+                  type="email"
+                  value={email}
+                  name="email"
+                  onChange={onInputChange}
+                  placeholder="Enter Email"
+                  className="form-control"
+                />
+                <label for="floatingInput">Email</label>
+              </div>
+              {/* password */}
+              <div className="form-floating mb-3">
+                <input
+                  type="password"
+                  value={password}
+                  name="password"
+                  placeholder="Enter Password"
+                  className="form-control"
+                  onChange={onInputChange}
+                />
+                <label for="floatingInput">Password</label>
+              </div>
+              <div className="d-grid">
+                <button type="submit" className="btn bg-black text-white">
+                  Sign In
+                </button>
+              </div>
+              <p className="text-end mt-2">
+                Forgot{" "}
+                <a href="" className="text-black">
+                  Password?
+                </a>
+                <Link to="/signup" className="ms-2 footerTextColorGray">
+                  Sign up
+                </Link>
+              </p>
+            </form>
           </div>
-          <div className="mb-2">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              value={password}
-              name="password"
-              placeholder="Enter Password"
-              className="form-control"
-              onChange={onInputChange}
-            />
-          </div>
-          <div className="mb-2">
-            <input
-              type="checkbox"
-              className="custom-control custom-checkbox"
-              id="check"
-            />
-            <label htmlFor="check" className="custom-input-label">
-              Remember me
-            </label>
-          </div>
-          <div className="d-grid">
-            <button type="submit" className="btn bg-black text-white">
-              Sign In
-            </button>
-          </div>
-          <p className="text-end mt-2">
-            Forgot{" "}
-            <a href="" className="footerTextColorGray">
-              Password?
-            </a>
-            <Link to="/signup" className="ms-2 footerTextColorGray">
-              Sign up
-            </Link>
-          </p>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -6,11 +6,31 @@ import { arrow } from "../assets/icons/icons";
 import PlaceHolderSingle from "../middleware/PlaceHolderSingle.jsx";
 //
 import { addCart } from "../redux/feature/authSlice.js";
-
+import TokenValidation from "./TokenValidation";
+import UserValidation from "./UserValidation";
 const SingleShoes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = JSON.parse(localStorage.getItem("user"));
+  const getUser = localStorage.getItem("user");
+  const getToken = localStorage.getItem("auth");
+
+  if (!getUser) {
+    return (
+      <>
+        <UserValidation />
+      </>
+    );
+  }
+  if (!getToken) {
+    return (
+      <>
+        <TokenValidation />
+      </>
+    );
+  }
+
+  const { token } = JSON.parse(getToken);
+  console.log(token);
   const [formData, setFormData] = useState([]);
   const { singleItem, loadingS } = useSelector((state) => state.allShoes);
 

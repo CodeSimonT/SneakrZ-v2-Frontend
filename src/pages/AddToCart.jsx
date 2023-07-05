@@ -3,12 +3,32 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../redux/cart/userData.js";
 import { deleteUserData } from "../redux/cart/deleteData.js";
+import TokenValidation from "../middleware/TokenValidation.jsx";
+import UserValidation from "../middleware/UserValidation";
 
 const AddToCart = () => {
   const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = JSON.parse(localStorage.getItem("user"));
+  const getUser = localStorage.getItem("user");
+  const getToken = localStorage.getItem("auth");
+
+  if (!getUser) {
+    return (
+      <>
+        <UserValidation />
+      </>
+    );
+  }
+  if (!getToken) {
+    return (
+      <>
+        <TokenValidation />
+      </>
+    );
+  }
+
+  const { token } = JSON.parse(getToken);
   const { items, loading } = useSelector((item) => item.data);
 
   const deleteItem = (id) => {
