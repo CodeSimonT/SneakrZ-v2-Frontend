@@ -7,25 +7,29 @@ import PlaceHolderSingle from "../middleware/PlaceHolderSingle.jsx";
 //
 import { addCart } from "../redux/feature/authSlice.js";
 import TokenValidation from "./TokenValidation";
-
+import UserValidation from "./UserValidation";
 const SingleShoes = () => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGEzOTA5YjRmMDlmOTdlYWY4ZTFkMWQiLCJpYXQiOjE2ODg0NDE2NzMsImV4cCI6NDg0NDIwMTY3M30.seEQh3ub0QkAZvLTyp3Ib2LE4qUJMgErkzI9N5ksdDo";
-  // const [token, setToken] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const localData = localStorage.getItem("user");
+  const getUser = localStorage.getItem("user");
+  const getToken = localStorage.getItem("auth");
 
-  // if (!localData) {
-  //   return (
-  //     <>
-  //       <TokenValidation />
-  //     </>
-  //   );
-  // } else {
-  //   setToken(JSON.parse(localData));
-  // }
-  // const { token } = JSON.parse(localData);
+  if (!getUser) {
+    return (
+      <>
+        <UserValidation />
+      </>
+    );
+  }
+  if (!getToken) {
+    return (
+      <>
+        <TokenValidation />
+      </>
+    );
+  }
+
+  const { token } = JSON.parse(getToken);
   const [formData, setFormData] = useState([]);
   const { singleItem, loadingS } = useSelector((state) => state.allShoes);
 

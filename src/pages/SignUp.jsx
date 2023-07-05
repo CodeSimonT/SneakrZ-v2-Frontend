@@ -11,6 +11,7 @@ const initialState = {
 };
 
 function Signup() {
+  const [toggle, setToggle] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
@@ -22,6 +23,9 @@ function Signup() {
       dispatch(register({ formData, navigate }));
       console.log("form complete");
     }
+  };
+  const toggler = () => {
+    setToggle;
   };
 
   const onInputChange = (e) => {
@@ -73,6 +77,17 @@ function Signup() {
               type="password"
               value={password}
               name="password"
+              placeholder="Enter Password"
+              className="form-control"
+              onChange={onInputChange}
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="password">Confirm Password</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              name="confirmPassword"
               placeholder="Enter Password"
               className="form-control"
               onChange={onInputChange}

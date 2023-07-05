@@ -1,0 +1,59 @@
+.signIconS {
+  width: 20px;
+  margin-right: 5px;
+}
+.colorBlue {
+  color: #3c76f2;
+}
+.signImgSize {
+  width: 200px;
+}
+.inputDesign {
+  outline: none;
+  color: white;
+  border: 1px solid gray;
+}
+.orBorder {
+  height: 1px;
+  width: 40px;
+  border-bottom: 1px solid gray;
+}
+.signUpB {
+  border: 1.5px solid #3c76f2;
+  border-radius: 8px;
+}
+.signIconsS2 {
+  width: 23px;
+  margin-right: 5px;
+  z-index: 100;
+}
+.containerWidth {
+  width: 100%;
+}
+.textBorder {
+  text-decoration: underline;
+  color: white;
+  text-decoration-color: white;
+  margin-left: 3px;
+}
+
+.signCBorderR {
+  border-right: 1px solid gray;
+}
+.webView {
+  width: 50%;
+}
+.signImgSO {
+  width: 100%;
+}
+@media screen and (max-width: 992px) {
+  .mobileV {
+    width: 100%;
+  }
+  .signImgSizeR {
+    width: 80%;
+  }
+  .hideBorder {
+    border: none;
+  }
+}

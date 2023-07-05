@@ -104,6 +104,15 @@ h5 {
   outline: none;
   border: none;
 }
+/* .form-floating {
+  outline: none !important;
+  box-shadow: none !important;
+} */
+.form-control {
+  -webkit-box-shadow: none !important;
+  outline: -webkit-focus-ring-color auto 0px !important;
+  border: 1px solid black !important;
+}
 .descriptionS {
   max-height: 70px;
   overflow-y: scroll;
@@ -180,6 +189,12 @@ h5 {
 }
 .borderB {
   border-bottom: 0.3px solid black;
+}
+.buttonS {
+  border: 1px solid var(--dark);
+  border-radius: 3px;
+  background-color: var(--dark);
+  color: white;
 }
 /* end globals */
 
