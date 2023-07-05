@@ -109,7 +109,6 @@ const AllShoes = () => {
                     <h6 className="card-title">{item.title} </h6>
                     <p className="card-text colorGray">{item.for}</p>
                     <p className="card-text colorGray">${item.price}</p>
-                    <p className="card-text text- colorGray">{item.sale}</p>
                   </div>
                 </div>
               </div>
