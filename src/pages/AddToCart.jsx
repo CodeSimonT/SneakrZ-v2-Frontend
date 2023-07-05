@@ -13,7 +13,7 @@ const AddToCart = () => {
   const getUser = localStorage.getItem("user");
   const getToken = localStorage.getItem("auth");
 
-  if (!getUser) {
+  if (!getUser && !getToken) {
     return (
       <>
         <UserValidation />
