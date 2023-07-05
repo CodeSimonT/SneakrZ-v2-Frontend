@@ -1,5 +1,6 @@
 import React from "react";
 import { justInImage } from "../assets/images";
+import { Link } from "react-router-dom";
 const JustIn = () => {
   return (
     <>
@@ -18,7 +19,11 @@ const JustIn = () => {
               footwear, crafted with precision and attention to detail. Step
               into iconic fashion today.
             </p>
-            <button className="buttonStyle urbanist">Shop Now!</button>
+            <button className="buttonStyle urbanist">
+              <Link className="text-white" to={"/AllShoes"}>
+                Shop Now!
+              </Link>
+            </button>
           </div>
         </div>
       </section>

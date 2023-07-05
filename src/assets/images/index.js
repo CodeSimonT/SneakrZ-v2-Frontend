@@ -7,7 +7,6 @@ import S1 from "./S1.webp";
 import S2 from "./S2.webp";
 import S3 from "./S3.webp";
 import S4 from "./S4.webp";
-import S5 from "./S5.webp";
 import S6 from "./S6.webp";
 import S7 from "./S7.webp";
 import S8 from "./S8.webp";
@@ -29,7 +28,6 @@ export {
   S2,
   S3,
   S4,
-  S5,
   S6,
   S7,
   S8,

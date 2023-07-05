@@ -1,6 +1,7 @@
 import React from "react";
 import { heroImage } from "../assets/images";
 import { styling } from "../../style/style.js";
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <>
@@ -20,7 +21,11 @@ const Hero = () => {
                 sneaker culture. Join the hype now!
               </p>
               <div className="d-flex justify-content-start w-100">
-                <button className="buttonStyle ">Shop kicks!</button>
+                <button className="buttonStyle">
+                  <Link className="text-white" to={"/AllShoes"}>
+                    Shop kicks!
+                  </Link>
+                </button>
               </div>
             </div>
 

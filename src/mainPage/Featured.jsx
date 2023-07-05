@@ -1,5 +1,6 @@
 import React from "react";
 import { featured } from "../constants/index";
+import { Link } from "react-router-dom";
 const Featured = () => {
   return (
     <>
@@ -22,7 +23,11 @@ const Featured = () => {
                 </div>
                 <div className="card-body">
                   <p className="card-text">{item.content}</p>
-                  <button className="buttonStyle">Shop</button>
+                  <button className="buttonStyle">
+                    <Link className="text-white" to={"/AllShoes"}>
+                      Shop
+                    </Link>
+                  </button>
                 </div>
               </div>
             </div>

@@ -5,7 +5,6 @@ import {
   S2,
   S3,
   S4,
-  S5,
   S6,
   S7,
   S8,
@@ -54,9 +53,6 @@ function Slides() {
 
           <li className="splide__slide">
             <img src={S4} className="img-fluid imageSplide" />
-          </li>
-          <li className="splide__slide">
-            <img src={S5} className="img-fluid imageSplide" />
           </li>
           <li className="splide__slide">
             <img src={S6} className="img-fluid imageSplide" />
