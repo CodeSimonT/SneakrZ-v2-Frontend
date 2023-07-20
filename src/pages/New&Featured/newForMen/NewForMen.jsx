@@ -5,6 +5,7 @@ import ShoesLoopMen from "../../../middleware/ShoesLoopMen";
 import { arrow } from "../../../assets/icons/icons.js";
 import { PlaceHolder } from "../../../middleware";
 import { styling } from "../../../../style/style.js";
+import { selectItem } from "../../../redux/cart/getAllShoes";
 
 const NewForMen = () => {
   const dispatch = useDispatch();

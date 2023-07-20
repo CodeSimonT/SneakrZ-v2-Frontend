@@ -78,6 +78,12 @@ h5 {
 .colorGray {
   color: var(--footerTextColor);
 }
+.colorGrayBack {
+  background-color: var(--darkgray);
+}
+.colorGrayBack:hover {
+  background-color: var(--navbarSubTextColor);
+}
 .urbanistBold {
   font-family: urbanistBold;
 }
@@ -243,4 +249,19 @@ h5 {
 /* end footer style */
 .remove-outline {
   outline: none;
+}
+
+/* modal */
+/* CSS for the modal fade-in and fade-out transitions */
+.modal {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+.modal-open {
+  overflow: hidden;
 }

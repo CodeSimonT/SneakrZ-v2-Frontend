@@ -3,48 +3,35 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../redux/cart/userData.js";
 import { deleteItem } from "../redux/feature/authSlice.js";
-import TokenValidation from "../middleware/TokenValidation.jsx";
 import UserValidation from "../middleware/UserValidation";
 import { sizes } from "../constants/index.js";
 import { quantityN, shoeSize } from "../redux/feature/authSlice.js";
-import { fetchAllShoes } from "../redux/cart/getAllShoes.js";
+// import { fetchAllShoes } from "../redux/cart/getAllShoes.js";
 
 const AddToCart = () => {
-  const [total, setTotal] = useState(0);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const getUser = localStorage.getItem("user");
   const getToken = localStorage.getItem("auth");
-
-  if (!getUser && !getToken) {
-    return (
-      <>
-        <UserValidation />
-      </>
-    );
-  }
-  if (!getToken) {
-    return (
-      <>
-        <TokenValidation />
-      </>
-    );
-  }
-
-  const { token } = JSON.parse(getToken);
-  const [allShoes, setData] = useState({});
-  const [toggle, setToggle] = useState(false);
-  const [quantity, setQuantity] = useState("");
-  const { items, loading } = useSelector((item) => item.data);
+  const [token, setToken] = useState("");
+  const [userDataLoaded, setUserDataLoaded] = useState(false);
+  // console.log(token);
 
   useEffect(() => {
-    dispatch(getUserData({ token: token, navigate }));
-    console.log(items);
+    if (getToken) {
+      const { token } = JSON.parse(getToken);
+      dispatch(getUserData({ token: token, navigate }));
+      setUserDataLoaded(true);
+      setToken(token);
+    }
   }, []);
+
+  const [total, setTotal] = useState(0);
+  const [allShoes, setData] = useState({});
+  const [toggle, setToggle] = useState(false);
+  const { items, loading } = useSelector((item) => item.data);
+
   const calling = () => {
     setData(items);
-    console.log(items);
   };
   useEffect(() => {
     calling();
@@ -107,6 +94,7 @@ const AddToCart = () => {
 
   return (
     <>
+      {!userDataLoaded && !token && <UserValidation />}
       <section className="urbanist pt-4 pb-5">
         <div className="container-fluid mt-3">
           <div className="row">
@@ -218,12 +206,12 @@ const AddToCart = () => {
                   Checkout
                 </h5>
               </div>
+              {/* The Bootstrap Modal */}
+
+              {/* End of Bootstrap Modal */}
             </div>
           </div>
         </div>
-        {/* <div className="row">
-          
-        </div> */}
       </section>
     </>
   );

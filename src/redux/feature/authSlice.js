@@ -6,7 +6,7 @@ export const register = createAsyncThunk(
   async ({ formData, navigate }, { rejectWithValue }) => {
     try {
       const response = await api.register(formData);
-      navigate("/");
+      navigate("/AddToCart");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -18,7 +18,7 @@ export const login = createAsyncThunk(
   async ({ formData, navigate }, { rejectWithValue }) => {
     try {
       const response = await api.login(formData);
-      navigate("/");
+      navigate("/AddToCart");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

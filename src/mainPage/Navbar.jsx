@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { bag, heart, menu, search, close } from "../assets/icons/icons.js";
 import { styling } from "../../style/style.js";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllShoes, fetchSingleShoes } from "../redux/cart/getAllShoes";
-
+import { selectItem } from "../redux/cart/getAllShoes.js";
 // import navMobileView from "../middleware/navMobileView";
 
 const Navbar = () => {
@@ -16,15 +15,12 @@ const Navbar = () => {
   const [filter, setFilter] = useState([]);
   const [value, setValue] = useState("");
   const { items, loading } = useSelector((state) => state.allShoes);
+  const getToken = localStorage.getItem("auth");
 
   const dispatchSingle = (id) => {
-    console.log(id);
-    dispatch(fetchSingleShoes({ id, navigate }));
+    dispatch(selectItem(id));
+    navigate("/SingleShoes");
   };
-
-  useEffect(() => {
-    dispatch(fetchAllShoes());
-  }, [dispatch]);
 
   useEffect(() => {
     setData(items);
@@ -124,7 +120,11 @@ const Navbar = () => {
                         Women
                       </Link>
                     </li>
-                    <li className={`navLinkF ${styling.CenterY} `}>
+                    <li
+                      className={`navLinkF ${styling.CenterY} ${
+                        getToken ? "d-none" : "d-block"
+                      } `}
+                    >
                       <Link
                         className="removeUnderline text-black py-2"
                         to={"/Login"}
@@ -282,7 +282,12 @@ const Navbar = () => {
                         data-bs-dismiss="offcanvas"
                         aria-label="Close"
                       >
-                        <Link to={"/Login"} className="text-black">
+                        <Link
+                          to={"/Login"}
+                          className={`text-black ${
+                            getToken ? "d-none" : "d-block"
+                          }`}
+                        >
                           Login
                         </Link>
                       </div>

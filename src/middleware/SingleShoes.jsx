@@ -5,32 +5,23 @@ import { styling } from "../../style/style";
 import { arrow } from "../assets/icons/icons";
 import PlaceHolderSingle from "../middleware/PlaceHolderSingle.jsx";
 import { addCart } from "../redux/feature/authSlice.js";
-import TokenValidation from "./TokenValidation";
 import UserValidation from "./UserValidation";
+import ZoomImage from "../middleware/ZoomImage.jsx";
 
 const SingleShoes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const getUser = localStorage.getItem("user");
   const getToken = localStorage.getItem("auth");
+  const [token, setToken] = useState("");
+  const [userDataLoaded, setUserDataLoaded] = useState(false);
 
-  // user account validation
-  if (!getUser && !getToken) {
-    return (
-      <>
-        <UserValidation />
-      </>
-    );
-  }
-  if (!getToken) {
-    return (
-      <>
-        <TokenValidation />
-      </>
-    );
-  }
-  // jwt token
-  const { token } = JSON.parse(getToken);
+  useEffect(() => {
+    if (getToken) {
+      const { token } = JSON.parse(getToken);
+      setToken(token);
+    }
+  }, []);
+
   // selected size
   const [sizing, setSizing] = useState("");
   // singleShoes to map in the web
@@ -56,7 +47,9 @@ const SingleShoes = () => {
     if (!sizeV) {
       setSizev(true);
     } else {
-      dispatch(addCart({ formData: formData, token: token, navigate }));
+      token
+        ? dispatch(addCart({ formData: formData, token: token, navigate }))
+        : setUserDataLoaded(true);
     }
   };
 
@@ -81,6 +74,7 @@ const SingleShoes = () => {
 
   return (
     <>
+      {userDataLoaded && <UserValidation />}
       <section className="py-5 my-5 px-0 px-lg-5 urbanist">
         <div className="container-fluid ">
           <div className="row">
