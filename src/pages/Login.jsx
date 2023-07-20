@@ -38,25 +38,27 @@ function Login() {
               <div className="form-floating mb-3">
                 <input
                   type="email"
+                  id="emailInput"
                   value={email}
                   name="email"
                   onChange={onInputChange}
                   placeholder="Enter Email"
                   className="form-control"
                 />
-                <label for="floatingInput">Email</label>
+                <label htmlFor="emailInput">Email</label>
               </div>
               {/* password */}
               <div className="form-floating mb-3">
                 <input
                   type="password"
+                  id="passwordInput"
                   value={password}
                   name="password"
                   placeholder="Enter Password"
                   className="form-control"
                   onChange={onInputChange}
                 />
-                <label for="floatingInput">Password</label>
+                <label htmlFor="passwordInput">Password</label>
               </div>
               <div className="d-grid">
                 <button type="submit" className="btn bg-black text-white">

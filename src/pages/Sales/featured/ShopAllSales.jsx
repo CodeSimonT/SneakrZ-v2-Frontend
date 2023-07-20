@@ -4,27 +4,36 @@ import { useNavigate } from "react-router-dom";
 import ShoesLoopMen from "../../../middleware/ShoesLoopWomen";
 import { arrow } from "../../../assets/icons/icons.js";
 import { PlaceHolder } from "../../../middleware";
-import {
-  getAllAddidasMen,
-  getSingleAddidasMen,
-  getAllNewbalanceMen,
-  getSingleNewbalanceMen,
-  getAllNikeMen,
-  getSingleNikeMen,
-  getAllUnderArmourMen,
-  getSingleUnderArmourMen,
-} from "../../../redux/cart/menShoes";
 import { styling } from "../../../../style/style.js";
+import { selectItem } from "../../../redux/cart/getAllShoes";
 
 const ShopAllSales = () => {
-  const [value, setValue] = useState([]);
-  const [toggle, setToggle] = useState("Nike");
-  const [toggle2, setToggle2] = useState("Sort by Price");
-  let container = [];
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { adidasItem, newBalanceItem, nikeItem, underArmourItem, loading } =
-    useSelector((state) => state.allShoesMen);
+  const [value, setValue] = useState([]);
+  const [toggle, setToggle] = useState("Nike");
+  const [toggle2, setToggle2] = useState("Sort By:");
+  const { items, loading } = useSelector((state) => state.allShoes);
+
+  // toggle for the brand
+  useEffect(() => {
+    const getDate = async () => {
+      try {
+        const bestSellerShoes = await items.task.filter(
+          (item) => item.brand === toggle
+        );
+        setValue(bestSellerShoes);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDate();
+  }, [loading, toggle]);
+
+  const dispatchSingle = (id) => {
+    dispatch(selectItem(id));
+    navigate("/SingleShoes");
+  };
 
   // sorting
   useEffect(() => {
@@ -35,51 +44,7 @@ const ShopAllSales = () => {
       const minValue = [...value]?.sort((a, b) => b.price - a.price);
       setValue(minValue);
     }
-  }, [toggle2, toggle]);
-  // store to value state
-  useEffect(() => {
-    if (toggle === "Nike") {
-      setValue(nikeItem.task);
-    } else if (toggle === "Adidas") {
-      setValue(adidasItem.task);
-    } else if (toggle === "NewBalance") {
-      setValue(newBalanceItem.task);
-    } else if (toggle === "Under Armour") {
-      setValue(underArmourItem.task);
-    }
-  }, [nikeItem.task, adidasItem.task, toggle]);
-
-  // function for selecting a single item
-  // nike
-  const dispatchSingleNikeMen = (id) => {
-    console.log(id);
-    dispatch(getSingleNikeMen({ id, navigate }));
-  };
-  // adidas
-  const dispatchSingleAddidasMen = (id) => {
-    console.log(id);
-    dispatch(getSingleAddidasMen({ id, navigate }));
-  };
-  // newbalance
-  const dispatchSingleNewbalanceMen = (id) => {
-    console.log(id);
-    dispatch(getSingleNewbalanceMen({ id, navigate }));
-  };
-  // under armour
-  const dispatchSingleUnderArmourMen = (id) => {
-    console.log(id);
-    dispatch(getSingleUnderArmourMen({ id, navigate }));
-  };
-
-  useEffect(() => {
-    dispatch(getAllAddidasMen());
-    dispatch(getAllNewbalanceMen());
-    dispatch(getAllNikeMen());
-    dispatch(getAllUnderArmourMen());
-    // dispatch(fetchAllShoes());
-
-    // container.push(adidasItem?.task);
-  }, [dispatch]);
+  }, [toggle2]);
 
   if (loading) {
     return (
@@ -108,7 +73,7 @@ const ShopAllSales = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-5 mb-0 pointer">Brand: {toggle}</p>
+                  <p className="fs-5 bold mb-0 pointer">Brand: {toggle}</p>
                   <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
@@ -122,13 +87,13 @@ const ShopAllSales = () => {
                   </li>
                   <li
                     className="pointer"
-                    onClick={() => setToggle("NewBalance")}
+                    onClick={() => setToggle("Newbalance")}
                   >
                     NewBalance
                   </li>
                   <li
                     className="pointer"
-                    onClick={() => setToggle("Under Armour")}
+                    onClick={() => setToggle("Underarmour")}
                   >
                     UnderArmour
                   </li>
@@ -145,7 +110,7 @@ const ShopAllSales = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-5 mb-0 pointer">{toggle2}</p>
+                  <p className="fs-5 bold mb-0 pointer">{toggle2}</p>
                   <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
@@ -170,41 +135,13 @@ const ShopAllSales = () => {
           {/* grid container */}
           <div className="row">
             {/* nike */}
-            {toggle === "Nike" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleNikeMen}
-                />
-              ))}
-            {/* adidas */}
-            {toggle === "Adidas" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleAddidasMen}
-                />
-              ))}
-            {/* newBalance */}
-            {toggle === "NewBalance" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleNewbalanceMen}
-                />
-              ))}
-            {/* underArmour */}
-            {toggle === "Under Armour" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleUnderArmourMen}
-                />
-              ))}
+            {value?.map((item) => (
+              <ShoesLoopMen
+                value={item}
+                key={item._id}
+                propDispatch={dispatchSingle}
+              />
+            ))}
           </div>
         </div>
       </section>

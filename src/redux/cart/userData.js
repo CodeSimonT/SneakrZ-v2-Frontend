@@ -31,7 +31,7 @@ const userData = createSlice({
       .addCase(getUserData.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
-        console.log("fulfilled");
+        console.log("fulfilled use Cart");
       })
       .addCase(getUserData.rejected, (state, action) => {
         state.loading = false;

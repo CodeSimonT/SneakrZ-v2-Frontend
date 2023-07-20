@@ -45,60 +45,65 @@ function Signup() {
                 <input
                   type="text"
                   value={firstname}
+                  id="fisrtnameInput"
                   name="firstname"
                   placeholder="Enter First Name"
                   className="form-control remove-outline"
                   onChange={onInputChange}
                 />
-                <label for="floatingInput">First Name</label>
+                <label htmlFor="fisrtnameInput">First Name</label>
               </div>
 
               <div className="form-floating mb-3">
                 <input
                   type="text"
                   value={lastname}
+                  id="lastnameInput"
                   name="lastname"
                   placeholder="Enter Last Name"
                   className="form-control"
                   onChange={onInputChange}
                 />
-                <label for="floatingInput">Last Name</label>
+                <label htmlFor="lastnameInput">Last Name</label>
               </div>
 
               <div className="form-floating mb-3">
                 <input
                   type="email"
                   value={email}
+                  id="emailInput"
                   name="email"
                   placeholder="Enter Email"
                   className="form-control"
                   onChange={onInputChange}
                 />
-                <label for="floatingInput">Email</label>
+                <label htmlFor="emailInput">Email</label>
               </div>
 
               <div className="form-floating mb-3">
                 <input
                   type="password"
                   value={password}
+                  id="passwordInput"
                   name="password"
                   placeholder="Enter Password"
                   className="form-control"
                   onChange={onInputChange}
                 />
-                <label for="floatingInput">Password</label>
+                <label htmlFor="passwordInput">Password</label>
               </div>
 
               <div className="form-floating mb-3">
                 <input
                   type="password"
                   value={confirmPassword}
+                  id="confirmpasswordInput"
                   name="confirmPassword"
                   placeholder="Enter Password"
                   className="form-control"
                   onChange={onInputChange}
                 />
-                <label for="floatingInput">Confirm Password</label>
+                <label htmlFor="confirmpasswordInput">Confirm Password</label>
               </div>
               <div className="d-grid">
                 <button className="btn bg-black text-white">Sign Up</button>

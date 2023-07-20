@@ -17,8 +17,12 @@ import S12 from "./S12.webp";
 import S13 from "./S13.webp";
 import S14 from "./S14.webp";
 import S15 from "./S15.webp";
+import LoginImage from "./LoginImage.svg";
+import RegisterImage from "./RegisterImage.svg";
 
 export {
+  LoginImage,
+  RegisterImage,
   heroImage,
   justInImage,
   image1,

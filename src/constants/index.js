@@ -139,6 +139,65 @@ export const NavLinks = [
   },
 ];
 
+export const sizes = [
+  {
+    id: 1,
+    size: "US 6.5",
+  },
+  {
+    id: 2,
+    size: "US 7",
+  },
+  {
+    id: 3,
+    size: "US 7.5",
+  },
+  {
+    id: 4,
+    size: "US 8",
+  },
+  {
+    id: 5,
+    size: "US 8.5",
+  },
+  {
+    id: 6,
+    size: "US 9",
+  },
+  {
+    id: 7,
+    size: "US 9.5",
+  },
+  {
+    id: 8,
+    size: "US 10",
+  },
+  {
+    id: 9,
+    size: "US 10.5",
+  },
+  {
+    id: 10,
+    size: "US 11",
+  },
+  {
+    id: 11,
+    size: "US 11.5",
+  },
+  {
+    id: 12,
+    size: "US 12",
+  },
+  {
+    id: 13,
+    size: "US 12.5",
+  },
+  {
+    id: 14,
+    size: "US 13",
+  },
+];
+
 export const FooterLinks = [
   {
     id: 1,

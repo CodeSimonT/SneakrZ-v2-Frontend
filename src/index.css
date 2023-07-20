@@ -133,6 +133,12 @@ h5 {
 .sizeContainer:hover {
   border-color: var(--dark);
 }
+.selectedSize {
+  border-color: var(--dark);
+}
+.sizeValidation {
+  border-color: red;
+}
 .addButton {
   background-color: var(--dark);
 }
@@ -195,6 +201,12 @@ h5 {
   border-radius: 3px;
   background-color: var(--dark);
   color: white;
+}
+.borderR {
+  border-radius: 3px;
+}
+.drop1 {
+  width: 30px;
 }
 /* end globals */
 

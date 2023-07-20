@@ -4,17 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { styling } from "../../style/style";
 import { arrow } from "../assets/icons/icons";
 import PlaceHolderSingle from "../middleware/PlaceHolderSingle.jsx";
-//
 import { addCart } from "../redux/feature/authSlice.js";
 import TokenValidation from "./TokenValidation";
 import UserValidation from "./UserValidation";
+
 const SingleShoes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const getUser = localStorage.getItem("user");
   const getToken = localStorage.getItem("auth");
 
-  if (!getUser) {
+  // user account validation
+  if (!getUser && !getToken) {
     return (
       <>
         <UserValidation />
@@ -28,18 +29,47 @@ const SingleShoes = () => {
       </>
     );
   }
-
+  // jwt token
   const { token } = JSON.parse(getToken);
-  const [formData, setFormData] = useState([]);
-  const { singleItem, loadingS } = useSelector((state) => state.allShoes);
+  // selected size
+  const [sizing, setSizing] = useState("");
+  // singleShoes to map in the web
+  const [singleShoes, setItems] = useState({});
+  const [sizeV, setSizeV] = useState(false);
+  const [sizev, setSizev] = useState(false);
+  // cart formData to send on the user Account
+  const [formData, setFormData] = useState({});
+  const { items, loadingS } = useSelector((state) => state.allShoes);
 
+  // this code is to prevent the refresh error
+  useEffect(() => {
+    const shoesId = JSON.parse(localStorage.getItem("singleShoes"));
+    const singleShoesa = items?.task?.find((item) => item._id === shoesId);
+    setItems(singleShoesa);
+    setFormData(singleShoesa);
+    console.log(singleShoes);
+  }, [items]);
+
+  // add to cart function
   const dispatchItem = () => {
-    dispatch(addCart({ formData: formData, token: token, navigate }));
+    console.log(formData);
+    if (!sizeV) {
+      setSizev(true);
+    } else {
+      dispatch(addCart({ formData: formData, token: token, navigate }));
+    }
   };
 
+  // updating shoes size
   useEffect(() => {
-    setFormData(singleItem?.task);
-  }, [dispatch]);
+    setFormData((item) => {
+      return {
+        ...item,
+        size: sizing,
+      };
+    });
+    console.log(formData.size);
+  }, [sizing]);
 
   if (loadingS) {
     return (
@@ -57,7 +87,7 @@ const SingleShoes = () => {
             {/* image container */}
             <div className="col-12 col-lg-7 position-relative">
               <div className="position-sticky top-0 w-100 px-0 px-lg-3">
-                <img src={singleItem?.task.image} alt="" className="w-100" />
+                <img src={singleShoes?.image} alt="" className="w-100" />
               </div>
             </div>
             {/* text container */}
@@ -65,9 +95,9 @@ const SingleShoes = () => {
               <div className="px-0 px-lg-3 mt-2">
                 {/* heading */}
                 <div className="mb-5">
-                  <h1 className="Staatliches mb-2">{singleItem?.task.title}</h1>
-                  <h5 className="mb-4">{singleItem?.task.for}</h5>
-                  <h5>${singleItem?.task.price}</h5>
+                  <h1 className="Staatliches mb-2">{singleShoes?.title}</h1>
+                  <h5 className="mb-4">{singleShoes?.for}</h5>
+                  <h5>${singleShoes?.price}</h5>
                 </div>
                 {/* size */}
                 <div>
@@ -79,9 +109,21 @@ const SingleShoes = () => {
                 {/* size */}
                 <div className="px-2">
                   <div className="row">
-                    {singleItem?.task.size.map((item, index) => (
-                      <div className="col-4 px-1 pb-2 pointer " key={index}>
-                        <div className="sizeContainer">{item}</div>
+                    {singleShoes?.size?.map((item, index) => (
+                      <div
+                        className={`col-4 px-1 pb-2 pointer `}
+                        key={index}
+                        onClick={() => {
+                          setSizing(item), setSizev(false), setSizeV(true);
+                        }}
+                      >
+                        <div
+                          className={`${
+                            sizing === item ? "selectedSize" : ""
+                          } ${sizev ? "sizeValidation" : ""} sizeContainer`}
+                        >
+                          {item}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -98,7 +140,7 @@ const SingleShoes = () => {
                 </div>
                 {/* description */}
                 <div className="mt-5 mb-5">
-                  <p className="">{singleItem?.task.description} </p>
+                  <p className="">{singleShoes?.description} </p>
                 </div>
                 {/* accordions */}
                 <div
@@ -117,7 +159,7 @@ const SingleShoes = () => {
                         aria-controls="flush-collapseTwo"
                       >
                         <div className={`${styling.CenterY} `}>
-                          <h4 className="pointer">Free Delivery and Returns</h4>
+                          <h5 className="pointer">Free Delivery and Returns</h5>
                         </div>
                         <div className="accordionIconW pointer">
                           <img src={arrow} alt="" className="w-100" />
@@ -158,7 +200,7 @@ const SingleShoes = () => {
                         aria-controls="flush-collapseTwo"
                       >
                         <div className={styling.CenterY}>
-                          <h4 className="pointer">Reviews</h4>
+                          <h5 className="pointer">Reviews</h5>
                         </div>
                         <div className="accordionIconW">
                           <img src={arrow} alt="" className="w-100" />

@@ -5,17 +5,14 @@ import ShoesLoop from "../../../middleware/ShoesLoopMen";
 import { PlaceHolder } from "../../../middleware";
 import { styling } from "../../../../style/style";
 import { arrow } from "../../../assets/icons/icons";
-import {
-  getAllAddidasMen,
-  getSingleAddidasMen,
-} from "../../../redux/cart/menShoes.js";
+import { selectItem } from "../../../redux/cart/getAllShoes";
 
 const Adidas = () => {
-  const [toggle2, setToggle2] = useState("Price: Low-High");
-  const [value, setValue] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { adidasItem, loading } = useSelector((state) => state.allShoesMen);
+  const [value, setValue] = useState([]);
+  const [toggle2, setToggle2] = useState("Sort By:");
+  const { items, loading } = useSelector((state) => state.allShoes);
 
   // sorting
   useEffect(() => {
@@ -29,18 +26,16 @@ const Adidas = () => {
   }, [toggle2]);
 
   useEffect(() => {
-    setValue(adidasItem.task);
-  }, [adidasItem.task]);
-  // function for selecting a single item
-  // nike
-  const patchSingleAddidasMen = (id) => {
-    console.log(id);
-    dispatch(getSingleAddidasMen({ id, navigate }));
-  };
+    const bestSellerShoes = items?.task?.filter(
+      (item) => item.brand === "Adidas"
+    );
+    setValue(bestSellerShoes);
+  }, [loading]);
 
-  useEffect(() => {
-    dispatch(getAllAddidasMen());
-  }, [dispatch]);
+  const dispatchSingle = (id) => {
+    dispatch(selectItem(id));
+    navigate("/SingleShoes");
+  };
 
   if (loading) {
     return (
@@ -60,7 +55,7 @@ const Adidas = () => {
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
               <div className={`me-0 mb-2 `}>
-                <h3> Adidas {value?.length} pieces </h3>
+                <h3> Nike {value?.length} pieces </h3>
               </div>
             </div>
             {/* right content */}
@@ -73,7 +68,7 @@ const Adidas = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-5 mb-0 pointer">{toggle2}</p>
+                  <p className="fs-5 bold mb-0 pointer">{toggle2}</p>
                   <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
@@ -102,7 +97,7 @@ const Adidas = () => {
               <ShoesLoop
                 value={item}
                 key={item._id}
-                propDispatch={patchSingleAddidasMen}
+                propDispatch={dispatchSingle}
               />
             ))}
           </div>

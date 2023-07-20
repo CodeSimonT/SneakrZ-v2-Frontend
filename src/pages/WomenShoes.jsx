@@ -1,30 +1,51 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ShoesLoopWomen from "../middleware/ShoesLoopWomen.jsx";
+import ShoesLoopMen from "../middleware/ShoesLoopMen.jsx";
 import { arrow } from "../assets/icons/icons.js";
-import { styling } from "../../style/style.js";
 import { PlaceHolder } from "../middleware";
-
-import {
-  getAllAddidasWomen,
-  getSingleAddidasWomen,
-  getAllNewbalanceWomen,
-  getSingleNewbalanceWomen,
-  getAllNikeWomen,
-  getSingleNikeWomen,
-  getAllUnderArmourWomen,
-  getSingleUnderArmourWomen,
-} from "../redux/cart/womenShoes.js";
+import { styling } from "../../style/style.js";
 
 const WomenShoes = () => {
-  const [value, setValue] = useState([]);
-  const [toggle, setToggle] = useState("Nike");
-  const [toggle2, setToggle2] = useState("Sort by Price");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { adidasItem, newBalanceItem, nikeItem, underArmourItem, loading } =
-    useSelector((state) => state.allShoesWomen);
+  const [value, setValue] = useState([]);
+  const [toggle, setToggle] = useState("Nike");
+  const [toggle2, setToggle2] = useState("Sort By:");
+  const { items, loading } = useSelector((state) => state.allShoes);
+
+  useEffect(() => {
+    const getDate = async () => {
+      try {
+        const placeHold = await items.task.filter(
+          (item) => item.brand === "Nike" && item.sex === "Women"
+        );
+        setValue(placeHold);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDate();
+  }, [loading]);
+  // toggle for the brand
+  useEffect(() => {
+    const getDate = async () => {
+      try {
+        const bestSellerShoes = await items.task.filter(
+          (item) => item.brand === toggle && item.sex === "Women"
+        );
+        setValue(bestSellerShoes);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDate();
+  }, [loading, toggle]);
+
+  const dispatchSingle = (id) => {
+    dispatch(selectItem(id));
+    navigate("/SingleShoes");
+  };
 
   // sorting
   useEffect(() => {
@@ -35,51 +56,7 @@ const WomenShoes = () => {
       const minValue = [...value]?.sort((a, b) => b.price - a.price);
       setValue(minValue);
     }
-  }, [toggle2, toggle]);
-  // store to value state
-  useEffect(() => {
-    if (toggle === "Nike") {
-      setValue(nikeItem.task);
-    } else if (toggle === "Adidas") {
-      setValue(adidasItem.task);
-    } else if (toggle === "NewBalance") {
-      setValue(newBalanceItem.task);
-    } else if (toggle === "Under Armour") {
-      setValue(underArmourItem.task);
-    }
-  }, [nikeItem.task, adidasItem.task, toggle]);
-
-  // function for selecting a single item
-  // nike
-  const dispatchSingleNikeMen = (id) => {
-    console.log(id);
-    dispatch(getSingleNikeWomen({ id, navigate }));
-  };
-  // adidas
-  const dispatchSingleAddidasMen = (id) => {
-    console.log(id);
-    dispatch(getSingleAddidasWomen({ id, navigate }));
-  };
-  // newbalance
-  const dispatchSingleNewbalanceMen = (id) => {
-    console.log(id);
-    dispatch(getSingleNewbalanceWomen({ id, navigate }));
-  };
-  // under armour
-  const dispatchSingleUnderArmourMen = (id) => {
-    console.log(id);
-    dispatch(getSingleUnderArmourWomen({ id, navigate }));
-  };
-
-  useEffect(() => {
-    dispatch(getAllAddidasWomen());
-    dispatch(getAllNewbalanceWomen());
-    dispatch(getAllNikeWomen());
-    dispatch(getAllUnderArmourWomen());
-    // dispatch(fetchAllShoes());
-
-    // container.push(adidasItem?.task);
-  }, [dispatch]);
+  }, [toggle2]);
 
   if (loading) {
     return (
@@ -98,7 +75,10 @@ const WomenShoes = () => {
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
               <div className={`me-0 ${styling.CenterY}`}>
-                <h3> Women's Shoes {value?.length} pieces </h3>
+                <h3 onClick={() => console.log(value)}>
+                  {" "}
+                  Women Shoes {value?.length} pieces{" "}
+                </h3>
               </div>
               {/* dropdown */}
               <div className={`dropdown ${styling.CenterY} ms-0 ms-lg-4`}>
@@ -108,7 +88,7 @@ const WomenShoes = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-5 mb-0 pointer">Brand: {toggle}</p>
+                  <p className="fs-5 bold mb-0 pointer">Brand: {toggle}</p>
                   <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
@@ -122,13 +102,13 @@ const WomenShoes = () => {
                   </li>
                   <li
                     className="pointer"
-                    onClick={() => setToggle("NewBalance")}
+                    onClick={() => setToggle("Newbalance")}
                   >
                     NewBalance
                   </li>
                   <li
                     className="pointer"
-                    onClick={() => setToggle("Under Armour")}
+                    onClick={() => setToggle("Underarmour")}
                   >
                     UnderArmour
                   </li>
@@ -145,7 +125,7 @@ const WomenShoes = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-5 mb-0 pointer">{toggle2}</p>
+                  <p className="fs-5 bold mb-0 pointer">{toggle2}</p>
                   <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
@@ -170,41 +150,13 @@ const WomenShoes = () => {
           {/* grid container */}
           <div className="row">
             {/* nike */}
-            {toggle === "Nike" &&
-              value?.map((item) => (
-                <ShoesLoopWomen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleNikeMen}
-                />
-              ))}
-            {/* adidas */}
-            {toggle === "Adidas" &&
-              value?.map((item) => (
-                <ShoesLoopWomen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleAddidasMen}
-                />
-              ))}
-            {/* newBalance */}
-            {toggle === "NewBalance" &&
-              value?.map((item) => (
-                <ShoesLoopWomen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleNewbalanceMen}
-                />
-              ))}
-            {/* underArmour */}
-            {toggle === "Under Armour" &&
-              value?.map((item) => (
-                <ShoesLoopWomen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleUnderArmourMen}
-                />
-              ))}
+            {value?.map((item) => (
+              <ShoesLoopMen
+                value={item}
+                key={item._id}
+                propDispatch={dispatchSingle}
+              />
+            ))}
           </div>
         </div>
       </section>

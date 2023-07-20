@@ -32,13 +32,17 @@ const getAllShoes = createSlice({
     error: null,
     selectedItem: null,
     items: [],
-    singleItem: [],
+    singleItem: null,
   },
   reducers: {
     selectItem: (state, action) => {
       const itemId = action.payload;
       console.log(state.items);
-      // state.selectedItem = state.items.find((item) => item._id === itemId);
+      localStorage.removeItem("singleShoes");
+      localStorage.setItem("singleShoes", JSON.stringify(itemId));
+      const singleData = state.items.task.filter((item) => item._id === itemId);
+      state.singleItem = singleData;
+      console.log(state.singleItem);
     },
   },
   extraReducers: (builder) => {

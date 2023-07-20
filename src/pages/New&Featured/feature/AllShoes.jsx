@@ -5,21 +5,20 @@ import { styling } from "../../../../style/style.js";
 import { PlaceHolder } from "../../../middleware/index.js";
 import { arrow } from "../../../assets/icons/icons.js";
 import axios from "axios";
-import {
-  fetchAllShoes,
-  fetchSingleShoes,
-} from "../../../redux/cart/getAllShoes.js";
+import { selectItem } from "../../../redux/cart/getAllShoes.js";
 
 const AllShoes = () => {
   const [value, setValue] = useState([]);
-  const [toggle2, setToggle2] = useState("Price: Low-High");
+  const [toggle2, setToggle2] = useState("Sort By:");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { items, loading } = useSelector((state) => state.allShoes);
+
   const dispatchSingle = (id) => {
-    console.log(id);
-    dispatch(fetchSingleShoes({ id, navigate }));
+    dispatch(selectItem(id));
+    navigate("/SingleShoes");
   };
+
   useEffect(() => {
     if (toggle2 === "Price: Low-High") {
       const maxValue = [...value].sort((a, b) => b.price - a.price);
@@ -29,10 +28,6 @@ const AllShoes = () => {
       setValue(minValue);
     }
   }, [toggle2]);
-
-  useEffect(() => {
-    dispatch(fetchAllShoes());
-  }, [dispatch]);
 
   useEffect(() => {
     setValue(items.task);
@@ -73,7 +68,7 @@ const AllShoes = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-4 mb-0">{toggle2}</p>
+                  <p className="fs-5 bold mb-0 ">{toggle2}</p>
                   <div className="accordionIconW ms-2">
                     <img src={arrow} alt="" className="w-100" />
                   </div>

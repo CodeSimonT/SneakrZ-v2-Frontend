@@ -36,6 +36,7 @@ import WomenSale from "./Sales/womenSale/WomenSale";
 
 // login
 import Login from "./Login";
+import Loginn from "./Loginn";
 // signup
 import SignUp from "./SignUp";
 
@@ -64,6 +65,7 @@ export {
   MenSale,
   WomenSale,
   Login,
+  Loginn,
   SignUp,
   AddToCart,
 };

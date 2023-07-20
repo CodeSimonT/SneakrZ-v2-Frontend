@@ -110,3 +110,28 @@ export const readData = (token) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+export const quantity = (token, id, item) => {
+  console.log(token, id, item);
+  return API.patch(
+    `/user/addOne/${id}`,
+    { item: item },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+export const shoeSize = (token, id, item) => {
+  console.log(token, id, item);
+  return API.patch(
+    `/user/shoeSize/${id}`,
+    { item: item },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};

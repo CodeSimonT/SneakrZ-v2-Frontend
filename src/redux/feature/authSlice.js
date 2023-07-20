@@ -39,6 +39,44 @@ export const addCart = createAsyncThunk(
   }
 );
 
+export const deleteItem = createAsyncThunk(
+  "auth/deleteItem",
+  async ({ id, token }, { rejectWithValue }) => {
+    try {
+      const response = await api.deleteData(token, id);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const quantityN = createAsyncThunk(
+  "auth/quantityN",
+  async ({ token, id, item }, { rejectWithValue }) => {
+    try {
+      const response = await api.quantity(token, id, item);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const shoeSize = createAsyncThunk(
+  "auth/shoeSize",
+  async ({ token, id, item }, { rejectWithValue }) => {
+    try {
+      const response = await api.shoeSize(token, id, item);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -89,7 +127,50 @@ const authSlice = createSlice({
       })
       .addCase(addCart.rejected, (state, action) => {
         state.loading = false;
-        // state.error = action.payload.message;
+        state.error = action.payload.message;
+        console.log("rejected");
+      })
+      // delete Item
+      .addCase(deleteItem.pending, (state) => {
+        state.loading = true;
+        console.log("pending");
+      })
+      .addCase(deleteItem.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+        console.log("Item deleted");
+      })
+      .addCase(deleteItem.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+        console.log("rejected");
+      })
+      // quantity Item
+      .addCase(quantityN.pending, (state) => {
+        state.loading = true;
+        console.log("pending");
+      })
+      .addCase(quantityN.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log("change");
+      })
+      .addCase(quantityN.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+        console.log("rejected");
+      })
+      // shoesize Item
+      .addCase(shoeSize.pending, (state) => {
+        state.loading = true;
+        console.log("pending");
+      })
+      .addCase(shoeSize.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log("change");
+      })
+      .addCase(shoeSize.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
         console.log("rejected");
       });
   },

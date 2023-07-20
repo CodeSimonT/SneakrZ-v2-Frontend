@@ -4,28 +4,48 @@ import { useNavigate } from "react-router-dom";
 import ShoesLoopMen from "../middleware/ShoesLoopMen.jsx";
 import { arrow } from "../assets/icons/icons.js";
 import { PlaceHolder } from "../middleware";
-import {
-  getAllAddidasMen,
-  getSingleAddidasMen,
-  getAllNewbalanceMen,
-  getSingleNewbalanceMen,
-  getAllNikeMen,
-  getSingleNikeMen,
-  getAllUnderArmourMen,
-  getSingleUnderArmourMen,
-} from "../redux/cart/menShoes.js";
 import { styling } from "../../style/style.js";
 
 const MenShoes = () => {
-  const [count, setCount] = useState(0);
-  const [value, setValue] = useState([]);
-  const [toggle, setToggle] = useState("Nike");
-  const [toggle2, setToggle2] = useState("Sort by Price");
-  let container = [];
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { adidasItem, newBalanceItem, nikeItem, underArmourItem, loading } =
-    useSelector((state) => state.allShoesMen);
+  const [value, setValue] = useState([]);
+  const [toggle, setToggle] = useState("Nike");
+  const [toggle2, setToggle2] = useState("Sort By:");
+  const { items, loading } = useSelector((state) => state.allShoes);
+
+  useEffect(() => {
+    const getDate = async () => {
+      try {
+        const placeHold = await items.task.filter(
+          (item) => item.brand === "Nike" && item.sex === "Men"
+        );
+        setValue(placeHold);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDate();
+  }, [loading]);
+  // toggle for the brand
+  useEffect(() => {
+    const getDate = async () => {
+      try {
+        const bestSellerShoes = await items.task.filter(
+          (item) => item.brand === toggle && item.sex === "Men"
+        );
+        setValue(bestSellerShoes);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDate();
+  }, [loading, toggle]);
+
+  const dispatchSingle = (id) => {
+    dispatch(selectItem(id));
+    navigate("/SingleShoes");
+  };
 
   // sorting
   useEffect(() => {
@@ -36,51 +56,7 @@ const MenShoes = () => {
       const minValue = [...value]?.sort((a, b) => b.price - a.price);
       setValue(minValue);
     }
-  }, [toggle2, toggle]);
-  // store to value state
-  useEffect(() => {
-    if (toggle === "Nike") {
-      setValue(nikeItem.task);
-    } else if (toggle === "Adidas") {
-      setValue(adidasItem.task);
-    } else if (toggle === "NewBalance") {
-      setValue(newBalanceItem.task);
-    } else if (toggle === "Under Armour") {
-      setValue(underArmourItem.task);
-    }
-  }, [nikeItem.task, adidasItem.task, toggle]);
-
-  // function for selecting a single item
-  // nike
-  const dispatchSingleNikeMen = (id) => {
-    console.log(id);
-    dispatch(getSingleNikeMen({ id, navigate }));
-  };
-  // adidas
-  const dispatchSingleAddidasMen = (id) => {
-    console.log(id);
-    dispatch(getSingleAddidasMen({ id, navigate }));
-  };
-  // newbalance
-  const dispatchSingleNewbalanceMen = (id) => {
-    console.log(id);
-    dispatch(getSingleNewbalanceMen({ id, navigate }));
-  };
-  // under armour
-  const dispatchSingleUnderArmourMen = (id) => {
-    console.log(id);
-    dispatch(getSingleUnderArmourMen({ id, navigate }));
-  };
-
-  useEffect(() => {
-    dispatch(getAllAddidasMen());
-    dispatch(getAllNewbalanceMen());
-    dispatch(getAllNikeMen());
-    dispatch(getAllUnderArmourMen());
-    // dispatch(fetchAllShoes());
-
-    // container.push(adidasItem?.task);
-  }, [dispatch]);
+  }, [toggle2]);
 
   if (loading) {
     return (
@@ -99,7 +75,10 @@ const MenShoes = () => {
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
               <div className={`me-0 ${styling.CenterY}`}>
-                <h3> Men's Shoes {value?.length} pieces </h3>
+                <h3 onClick={() => console.log(value)}>
+                  {" "}
+                  Men Shoes {value?.length} pieces{" "}
+                </h3>
               </div>
               {/* dropdown */}
               <div className={`dropdown ${styling.CenterY} ms-0 ms-lg-4`}>
@@ -109,7 +88,7 @@ const MenShoes = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-5 mb-0 pointer">Brand: {toggle}</p>
+                  <p className="fs-5 bold mb-0 pointer">Brand: {toggle}</p>
                   <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
@@ -123,13 +102,13 @@ const MenShoes = () => {
                   </li>
                   <li
                     className="pointer"
-                    onClick={() => setToggle("NewBalance")}
+                    onClick={() => setToggle("Newbalance")}
                   >
                     NewBalance
                   </li>
                   <li
                     className="pointer"
-                    onClick={() => setToggle("Under Armour")}
+                    onClick={() => setToggle("Underarmour")}
                   >
                     UnderArmour
                   </li>
@@ -146,7 +125,7 @@ const MenShoes = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <p className="fs-5 mb-0 pointer">{toggle2}</p>
+                  <p className="fs-5 bold mb-0 pointer">{toggle2}</p>
                   <div className={`${styling.CenterY} accordionIconW ms-2`}>
                     <img src={arrow} alt="" className="w-100" />
                   </div>
@@ -171,41 +150,13 @@ const MenShoes = () => {
           {/* grid container */}
           <div className="row">
             {/* nike */}
-            {toggle === "Nike" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleNikeMen}
-                />
-              ))}
-            {/* adidas */}
-            {toggle === "Adidas" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleAddidasMen}
-                />
-              ))}
-            {/* newBalance */}
-            {toggle === "NewBalance" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleNewbalanceMen}
-                />
-              ))}
-            {/* underArmour */}
-            {toggle === "Under Armour" &&
-              value?.map((item) => (
-                <ShoesLoopMen
-                  value={item}
-                  key={item._id}
-                  propDispatch={dispatchSingleUnderArmourMen}
-                />
-              ))}
+            {value?.map((item) => (
+              <ShoesLoopMen
+                value={item}
+                key={item._id}
+                propDispatch={dispatchSingle}
+              />
+            ))}
           </div>
         </div>
       </section>

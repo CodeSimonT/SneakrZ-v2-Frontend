@@ -3,38 +3,45 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FeatureLoop from "../../../middleware/FeatureLoop.jsx";
 import { PlaceHolder } from "../../../middleware";
-import {
-  getAllNewbalanceMen,
-  getSingleNewbalanceMen,
-} from "../../../redux/cart/menShoes.js";
-import {
-  getAllNewbalanceWomen,
-  getSingleNewbalanceWomen,
-} from "../../../redux/cart/womenShoes.js";
 import { styling } from "../../../../style/style.js";
+import { arrow } from "../../../assets/icons/icons.js";
+import { selectItem } from "../../../redux/cart/getAllShoes.js";
 
 const LatestShoes = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const newBalanceMen = useSelector((state) => state.allShoesMen);
-  const newBalanceWomen = useSelector((state) => state.allShoesWomen);
-  // function for selecting a single item
-  // adidas
-  const dispatchSingleNewbalanceMen = (id) => {
-    console.log(id);
-    dispatch(getSingleNewbalanceMen({ id, navigate }));
-  };
-  const dispatchSingleNewbalanceWomen = (id) => {
-    console.log(id);
-    dispatch(getSingleNewbalanceWomen({ id, navigate }));
-  };
+  const [value, setValue] = useState([]);
+  const [toggle2, setToggle2] = useState("Sort By:");
+  const { items, loading } = useSelector((state) => state.allShoes);
 
   useEffect(() => {
-    dispatch(getAllNewbalanceMen());
-    dispatch(getAllNewbalanceWomen());
-  }, [dispatch]);
+    if (toggle2 === "Price: Low-High") {
+      const maxValue = [...value].sort((a, b) => b.price - a.price);
+      setValue(maxValue);
+    } else {
+      const minValue = [...value]?.sort((a, b) => a.price - b.price);
+      setValue(minValue);
+    }
+  }, [toggle2]);
 
-  if (newBalanceMen.loading && newBalanceWomen.loading) {
+  useEffect(() => {
+    const bestSellerShoes = items?.task?.filter(
+      (item) => item.promo === "Latest Shoes"
+    );
+    console.log(value);
+    setValue(bestSellerShoes);
+  }, [loading]);
+
+  const dispatchSingle = (id) => {
+    dispatch(selectItem(id));
+    navigate("/SingleShoes");
+  };
+
+  const adidasMen = useSelector((state) => state.allShoesMen);
+  const adidasWomen = useSelector((state) => state.allShoesWomen);
+  // function for selecting a single item
+
+  if (adidasMen.loading && adidasWomen.loading) {
     return (
       <>
         <PlaceHolder />
@@ -51,31 +58,49 @@ const LatestShoes = () => {
             <div className="d-flex flex-column flex-md-row">
               {/* number List */}
               <div className={`me-0 ${styling.CenterY}`}>
-                <h3>
-                  Latest Shoes{" "}
-                  {newBalanceMen.newBalanceItem.task?.length +
-                    newBalanceWomen.newBalanceItem.task?.length}{" "}
-                  pieces
-                </h3>
+                <h3>Latest Shoes {value?.length} pieces</h3>
+              </div>
+            </div>
+            {/* right content */}
+            <div>
+              {/* sort */}
+              <div className={`dropdown ${styling.CenterY} ms-0 ms-lg-3`}>
+                <div
+                  className={`${styling.CenterY}`}
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <p className="fs-5 bold mb-0">{toggle2}</p>
+                  <div className="accordionIconW ms-2">
+                    <img src={arrow} alt="" className="w-100" />
+                  </div>
+                </div>
+                <ul className="dropdown-menu px-3 fs-5">
+                  <li
+                    className="pointer"
+                    onClick={() => setToggle2("Price: High-Low")}
+                  >
+                    Price: High-Low
+                  </li>
+                  <li
+                    className="pointer"
+                    onClick={() => setToggle2("Price: Low-High")}
+                  >
+                    Price: Low-High
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
           {/* grid container */}
           <div className="row">
             {/* men */}
-            {newBalanceMen.newBalanceItem.task?.map((item) => (
+            {value?.map((item) => (
               <FeatureLoop
                 value={item}
                 key={item._id}
-                propDispatch={dispatchSingleNewbalanceMen}
-              />
-            ))}
-            {/* Women */}
-            {newBalanceWomen.newBalanceItem.task?.map((item) => (
-              <FeatureLoop
-                value={item}
-                key={item._id}
-                propDispatch={dispatchSingleNewbalanceWomen}
+                propDispatch={dispatchSingle}
               />
             ))}
           </div>
