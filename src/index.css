@@ -265,3 +265,10 @@ h5 {
 .modal-open {
   overflow: hidden;
 }
+
+/* MyImageMagnify.css */
+/* Customize the container size as needed */
+.image-magnify-container {
+  width: 500px;
+  height: 500px;
+}

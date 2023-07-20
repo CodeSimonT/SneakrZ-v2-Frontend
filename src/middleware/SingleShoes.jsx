@@ -6,7 +6,7 @@ import { arrow } from "../assets/icons/icons";
 import PlaceHolderSingle from "../middleware/PlaceHolderSingle.jsx";
 import { addCart } from "../redux/feature/authSlice.js";
 import UserValidation from "./UserValidation";
-import ZoomImage from "../middleware/ZoomImage.jsx";
+import ReactImageMagnify from "react-image-magnify";
 
 const SingleShoes = () => {
   const dispatch = useDispatch();
@@ -81,7 +81,25 @@ const SingleShoes = () => {
             {/* image container */}
             <div className="col-12 col-lg-7 position-relative">
               <div className="position-sticky top-0 w-100 px-0 px-lg-3">
-                <img src={singleShoes?.image} alt="" className="w-100" />
+                {/* <img src={singleShoes?.image} alt="" className="w-100" /> */}
+                <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      isFluidWidth: true,
+                      src: singleShoes?.image,
+                    },
+                    largeImage: {
+                      src: singleShoes?.image,
+                      width: 2000,
+                      height: 2000,
+                    },
+                    enlargedImageContainerDimensions: {
+                      width: "70%",
+                      height: "50%",
+                    },
+                    mouseActivation: "hover",
+                  }}
+                />
               </div>
             </div>
             {/* text container */}
