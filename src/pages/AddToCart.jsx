@@ -13,14 +13,11 @@ const AddToCart = () => {
   const navigate = useNavigate();
   const getToken = localStorage.getItem("auth");
   const [token, setToken] = useState("");
-  const [userDataLoaded, setUserDataLoaded] = useState(false);
   // console.log(token);
-
   useEffect(() => {
     if (getToken) {
       const { token } = JSON.parse(getToken);
       dispatch(getUserData({ token: token, navigate }));
-      setUserDataLoaded(true);
       setToken(token);
     }
   }, []);
@@ -94,7 +91,7 @@ const AddToCart = () => {
 
   return (
     <>
-      {!userDataLoaded && !token && <UserValidation />}
+      {!getToken && <UserValidation />}
       <section className="urbanist pt-4 pb-5">
         <div className="container-fluid mt-3">
           <div className="row">

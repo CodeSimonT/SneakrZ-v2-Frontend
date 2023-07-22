@@ -35,10 +35,15 @@ import {
   //
   WomenSale,
   Login,
-  Loginn,
   SignUp,
   //
   AddToCart,
+  //
+  UserProfile,
+  Billing,
+  PersonalInfo,
+  Gifts,
+  Orders,
 } from "./pages";
 
 import {
@@ -47,7 +52,17 @@ import {
   GetSingleShoesWomen,
 } from "./middleware";
 
+import { fetchAllShoes } from "./redux/cart/getAllShoes.js";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllShoes());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
@@ -89,7 +104,6 @@ const App = () => {
           <Route path="/WomenSale" element={<WomenSale />}></Route>
           {/* login */}
           <Route path="/Login" element={<Login />}></Route>
-          <Route path="/Loginn" element={<Loginn />}></Route>
           {/* signup */}
           <Route path="/SignUp" element={<SignUp />}></Route>
           {/* add to cart */}
@@ -107,7 +121,11 @@ const App = () => {
             path="/GetSingleShoesWomen"
             element={<GetSingleShoesWomen />}
           ></Route>
+          {/* user Profile */}
+          <Route path="/UserProfile" element={<UserProfile />}></Route>
+          <Route path="/Billing" element={<Billing />}></Route>
         </Route>
+        {/* not found */}
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>

@@ -92,7 +92,7 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
-        localStorage.setItem("user", JSON.stringify({ ...action.payload }));
+        localStorage.setItem("auth", JSON.stringify({ ...action.payload }));
         state.user = action.payload;
         console.log("register complete");
       })

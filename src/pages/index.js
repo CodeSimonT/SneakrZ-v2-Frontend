@@ -36,12 +36,18 @@ import WomenSale from "./Sales/womenSale/WomenSale";
 
 // login
 import Login from "./Login";
-import Loginn from "./Loginn";
 // signup
 import SignUp from "./SignUp";
-
 // add to cart
 import AddToCart from "./AddToCart";
+// userProfile
+import UserProfile from "./UserProfile";
+
+// profile components
+import Billing from "./Profile/Billing";
+import Gifts from "./Profile/Gifts";
+import Orders from "./Profile/Orders";
+import PersonalInfo from "./Profile/PersonalInfo";
 
 export {
   MainPage,
@@ -65,7 +71,11 @@ export {
   MenSale,
   WomenSale,
   Login,
-  Loginn,
   SignUp,
   AddToCart,
+  UserProfile,
+  Billing,
+  PersonalInfo,
+  Gifts,
+  Orders,
 };

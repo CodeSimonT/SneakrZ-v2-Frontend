@@ -98,6 +98,7 @@ const SingleShoes = () => {
                       height: "50%",
                     },
                     mouseActivation: "hover",
+                    isHintEnabled: true,
                   }}
                 />
               </div>

@@ -19,7 +19,7 @@ const MenSale = () => {
   useEffect(() => {
     const getDate = async () => {
       try {
-        const bestSellerShoes = await items.task.filter(
+        const bestSellerShoes = await items?.task?.filter(
           (item) => item.brand === toggle && item.sex === "Men"
         );
         setValue(bestSellerShoes);

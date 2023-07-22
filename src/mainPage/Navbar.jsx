@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLinks } from "../constants";
 import { Link, useNavigate } from "react-router-dom";
-import { bag, heart, menu, search, close } from "../assets/icons/icons.js";
+import { bag, person, menu, search, close } from "../assets/icons/icons.js";
 import { styling } from "../../style/style.js";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItem } from "../redux/cart/getAllShoes.js";
@@ -65,9 +65,19 @@ const Navbar = () => {
               <div>
                 {/* logo and close menu */}
                 <div className="d-flex">
+                  {/* person */}
+                  <div
+                    className={`${styling.flexCenter}  mx-1 pointer  ${
+                      getToken ? "d-block d-lg-none" : "d-none"
+                    }`}
+                  >
+                    <Link to={"/UserProfile"}>
+                      <img src={person} alt="" className="navImgW" />
+                    </Link>
+                  </div>
                   {/* bag image*/}
                   <div
-                    className={`${styling.flexCenter} pointer me-3 d-block d-lg-none`}
+                    className={`${styling.flexCenter} pointer mx-1 d-block d-lg-none`}
                   >
                     <Link to={"/AddToCart"}>
                       <img src={bag} alt="" className="navImgW" />
@@ -337,11 +347,17 @@ const Navbar = () => {
                       ))}
                   </div>
                 </div>
-                {/* heart */}
+                {/* person */}
                 <div
-                  className={`${styling.flexCenter} me-3 pointer d-none d-lg-block`}
+                  className={`${
+                    styling.flexCenter
+                  } ms-2 ms-lg-0 me-2 pointer   ${
+                    getToken ? "d-none d-lg-block" : "d-none"
+                  }`}
                 >
-                  <img src={heart} alt="" className="navImgW" />
+                  <Link to={"/UserProfile"}>
+                    <img src={person} alt="" className="navImgW" />
+                  </Link>
                 </div>
                 {/* bag */}
                 <div

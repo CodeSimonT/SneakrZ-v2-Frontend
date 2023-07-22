@@ -608,3 +608,21 @@ export const adidasMenShoes = [
       "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1387f49d03f64d8191f6af8d01437ef4_9366/Harden_Volume_7_Shoes_White_HQ3425_01_standard.jpg",
   },
 ];
+
+export const profileLinks = [
+  {
+    id: 1,
+    title: "Profile information",
+    Link: "/Profile",
+  },
+  {
+    id: 2,
+    title: "Order History",
+    Link: "/Orders",
+  },
+  {
+    id: 3,
+    title: "Gift Cards",
+    Link: "/Gift",
+  },
+];
