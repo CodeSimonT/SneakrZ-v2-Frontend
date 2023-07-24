@@ -17,7 +17,7 @@ const SingleShoes = () => {
 
   useEffect(() => {
     if (getToken) {
-      const { token } = JSON.parse(getToken);
+      const token = JSON.parse(getToken);
       setToken(token);
     }
   }, []);
@@ -61,7 +61,7 @@ const SingleShoes = () => {
         size: sizing,
       };
     });
-    console.log(formData.size);
+    console.log(formData);
   }, [sizing]);
 
   if (loadingS) {
@@ -86,10 +86,10 @@ const SingleShoes = () => {
                   {...{
                     smallImage: {
                       isFluidWidth: true,
-                      src: singleShoes?.image,
+                      src: singleShoes?.image || "default_small_image_url",
                     },
                     largeImage: {
-                      src: singleShoes?.image,
+                      src: singleShoes?.image || "default_large_image_url",
                       width: 2000,
                       height: 2000,
                     },

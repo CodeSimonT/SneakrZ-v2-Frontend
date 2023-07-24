@@ -6,7 +6,7 @@ export const register = createAsyncThunk(
   async ({ formData, navigate }, { rejectWithValue }) => {
     try {
       const response = await api.register(formData);
-      navigate("/AddToCart");
+      navigate("/UserProfile");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -18,7 +18,7 @@ export const login = createAsyncThunk(
   async ({ formData, navigate }, { rejectWithValue }) => {
     try {
       const response = await api.login(formData);
-      navigate("/AddToCart");
+      navigate("/UserProfile");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -77,12 +77,33 @@ export const shoeSize = createAsyncThunk(
   }
 );
 
+export const postingAddress = createAsyncThunk(
+  "auth/postingAddress",
+  async ({ token, formData, navigate }, { rejectWithValue }) => {
+    try {
+      const response = await api.postAddress(token, formData);
+      navigate("/UserProfile");
+      console.log(formData);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: null,
     error: "",
+    regError: "",
     loading: false,
+  },
+  reducers: {
+    removeError: (state) => {
+      state.error = "";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -92,13 +113,14 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
-        localStorage.setItem("auth", JSON.stringify({ ...action.payload }));
+        const { token } = action.payload;
+        localStorage.setItem("auth", JSON.stringify(token));
         state.user = action.payload;
         console.log("register complete");
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.regError = action.payload.message;
         console.log("rejected");
       })
       .addCase(login.pending, (state) => {
@@ -106,14 +128,17 @@ const authSlice = createSlice({
         console.log("pending");
       })
       .addCase(login.fulfilled, (state, action) => {
+        const { token, hasAddress } = action.payload;
         state.loading = false;
-        localStorage.setItem("auth", JSON.stringify({ ...action.payload }));
+        localStorage.setItem("address", JSON.stringify(hasAddress));
+        localStorage.setItem("auth", JSON.stringify(token));
         state.user = action.payload;
         console.log("register complete");
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.message;
+        console.log(action.payload.message);
       })
       // add to cart
       .addCase(addCart.pending, (state) => {
@@ -172,7 +197,25 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload.message;
         console.log("rejected");
+      })
+      // post Address
+      .addCase(postingAddress.pending, (state) => {
+        state.loading = true;
+        console.log("pending");
+      })
+      .addCase(postingAddress.fulfilled, (state, action) => {
+        const { token, hasAddress } = action.payload;
+        state.loading = false;
+        localStorage.setItem("address", JSON.stringify(hasAddress));
+        localStorage.setItem("auth", JSON.stringify(token));
+        console.log("post Address");
+      })
+      .addCase(postingAddress.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+        console.log("rejected");
       });
   },
 });
+export const { removeError } = authSlice.actions;
 export default authSlice.reducer;

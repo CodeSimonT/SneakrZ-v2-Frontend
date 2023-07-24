@@ -40,10 +40,6 @@ import {
   AddToCart,
   //
   UserProfile,
-  Billing,
-  PersonalInfo,
-  Gifts,
-  Orders,
 } from "./pages";
 
 import {
@@ -123,7 +119,6 @@ const App = () => {
           ></Route>
           {/* user Profile */}
           <Route path="/UserProfile" element={<UserProfile />}></Route>
-          <Route path="/Billing" element={<Billing />}></Route>
         </Route>
         {/* not found */}
         <Route path="*" element={<NotFound />}></Route>

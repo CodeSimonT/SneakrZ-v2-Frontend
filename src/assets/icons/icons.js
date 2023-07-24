@@ -21,6 +21,7 @@ import nike from "./nike-logo.png";
 import adidas from "./adidas-logo.png";
 import newBalance from "./newbalance-logo.png";
 import UA from "./underarmour-logo.png";
+import bell from "./bell.png";
 
 export {
   arrowLeft,
@@ -46,4 +47,5 @@ export {
   globe,
   message,
   pinLoc,
+  bell,
 };

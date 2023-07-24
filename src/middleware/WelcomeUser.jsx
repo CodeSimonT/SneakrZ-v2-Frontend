@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
-const UserValidation = () => {
+const WelcomeUser = () => {
   useEffect(() => {
     if (true) {
       // Add the 'modal-open' class to the body when the modal is shown
@@ -13,7 +12,8 @@ const UserValidation = () => {
     };
   }, []);
   return (
-    <>
+    <div>
+      {" "}
       {/* The Bootstrap Modal */}
       <div
         className="modal show "
@@ -34,29 +34,13 @@ const UserValidation = () => {
                 Otherwise, you can register for a new account.
               </p>
             </div>
-            <div className="modal-footer">
-              {/* login */}
-              <Link type="button" className="btn colorGrayBack" to={"/Login"}>
-                Login
-              </Link>
-              {/* register */}
-              <Link
-                type="button"
-                className="btn colorGrayBack"
-                to={"/Signup"}
-                // onClick={toggleModal}
-              >
-                Register
-              </Link>
-              {/* Add other buttons if needed */}
-            </div>
           </div>
         </div>
       </div>
       <div className="modal-backdrop fade show"></div>
       {/* End of Bootstrap Modal */}
-    </>
+    </div>
   );
 };
 
-export default UserValidation;
+export default WelcomeUser;

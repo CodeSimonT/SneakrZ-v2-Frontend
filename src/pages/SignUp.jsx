@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from "../redux/feature/authSlice.js";
 import { arrowLeft, Fb, Google } from "../assets/icons/icons.js";
 import { RegisterImage } from "../assets/images/index.js";
+import { useSelector } from "react-redux";
 const initialState = {
   email: "",
   password: "",
@@ -17,11 +18,16 @@ const SignUpp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
+  const { regError } = useSelector((state) => state.auth);
   const { email, password, confirmPassword, firstname, lastname } = formData;
   const [text, setText] = useState(true);
+  const [passcon, setPasscont] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      return setPasscont(true);
+    }
     if (email && password && firstname && lastname && confirmPassword) {
       dispatch(register({ formData, navigate }));
       console.log("form complete");
@@ -140,7 +146,10 @@ const SignUpp = () => {
                   </div>
                   {/* <!-- email --> */}
                   <div className="mb-2">
-                    <p className="mb-1">Email</p>
+                    <div className="d-flex justify-content-between">
+                      <p className="mb-1">Email</p>
+                      {regError && <p className="mb-0">{regError}</p>}
+                    </div>
                     <input
                       type="email"
                       id="emailInput"
@@ -153,9 +162,12 @@ const SignUpp = () => {
                   </div>
                   {/* <!-- password --> */}
                   <div className="mb-2 colorGray">
-                    <p className="mb-1">
-                      Password <span className="colorGray">min 8. char</span>
-                    </p>
+                    <div className="d-flex justify-content-between">
+                      <p className="mb-1">Password</p>
+                      {passcon && (
+                        <p className="mb-0 red">Password didn't match</p>
+                      )}
+                    </div>
                     <input
                       type={text ? "password" : "text"}
                       id="passwordInput"

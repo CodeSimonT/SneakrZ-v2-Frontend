@@ -73,6 +73,9 @@ h5 {
 .bold {
   font-weight: bold;
 }
+.red {
+  color: red;
+}
 .textGray {
   color: var(--darkgray);
 }
@@ -272,4 +275,13 @@ h5 {
 .image-magnify-container {
   width: 500px;
   height: 500px;
+}
+.notifyStyle {
+  background-color: var(--profilecolor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }

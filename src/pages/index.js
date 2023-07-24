@@ -44,8 +44,7 @@ import AddToCart from "./AddToCart";
 import UserProfile from "./UserProfile";
 
 // profile components
-import Billing from "./Profile/Billing";
-import Gifts from "./Profile/Gifts";
+import ToReceived from "./Profile/ToReceived";
 import Orders from "./Profile/Orders";
 import PersonalInfo from "./Profile/PersonalInfo";
 
@@ -74,8 +73,7 @@ export {
   SignUp,
   AddToCart,
   UserProfile,
-  Billing,
+  ToReceived,
   PersonalInfo,
-  Gifts,
   Orders,
 };

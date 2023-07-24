@@ -135,3 +135,41 @@ export const shoeSize = (token, id, item) => {
     }
   );
 };
+
+export const postAddress = (token, formData) =>
+  API.post("/user/updateUserAddress", formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const getUser = (token) =>
+  API.get("/user/getUser", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+export const checkoutShoes = (token) =>
+  API.post("/user/checkoutItems", null, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+export const getuserorder = (token) =>
+  API.get("/user/getOrder", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+export const receivedShoes = (token) =>
+  API.post("/user/receivedItem", null, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+export const getusereceived = (token) =>
+  API.get("/user/getReceived", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

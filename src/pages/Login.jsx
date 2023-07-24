@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../redux/feature/authSlice.js";
 import { arrowLeft, Fb, Google } from "../assets/icons/icons.js";
 import { LoginImage } from "../assets/images/index.js";
+import { useSelector } from "react-redux";
 const initialState = {
   email: "",
   password: "",
@@ -13,9 +14,11 @@ const initialState = {
 const Loginn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { error } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
   const [text, setText] = useState(true);
+  console.log(error);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -110,7 +113,10 @@ const Loginn = () => {
                 <form onSubmit={handleSubmit}>
                   {/* <!-- email --> */}
                   <div className="mb-3">
-                    <p className="mb-1">Email</p>
+                    <div className="d-flex justify-content-between">
+                      <p className="mb-1">Email</p>
+                      {error && <p className="red mb-0">{error}</p>}
+                    </div>
                     <input
                       type="email"
                       id="emailInput"

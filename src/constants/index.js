@@ -613,16 +613,27 @@ export const profileLinks = [
   {
     id: 1,
     title: "Profile information",
-    Link: "/Profile",
   },
   {
     id: 2,
-    title: "Order History",
-    Link: "/Orders",
+    title: "To Received",
   },
   {
     id: 3,
-    title: "Gift Cards",
-    Link: "/Gift",
+    title: "Order History",
+  },
+];
+export const paymentMethod = [
+  {
+    title: "Gcash",
+  },
+  {
+    title: "Maya",
+  },
+  {
+    title: "COD",
+  },
+  {
+    title: "Bank",
   },
 ];
