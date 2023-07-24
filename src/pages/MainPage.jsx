@@ -1,4 +1,5 @@
 import React from "react";
+import { Hero, Categories, JustIn, Featured, Slides } from "../mainPage";
 import { fetchAllShoes } from "../redux/cart/getAllShoes";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
