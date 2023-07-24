@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../redux/feature/authSlice.js";
-import { arrowLeft, Fb, Google } from "../assets/icons/icons.js";
+import { arrowLeft, FB, Google } from "../assets/icons/icons.js";
 import { RegisterImage } from "../assets/images/index.js";
 import { useSelector } from "react-redux";
 const initialState = {
@@ -90,7 +90,7 @@ const SignUpp = () => {
                   <Link className="colorGray loginHover">Go back</Link>
                 </div>
               </div>
-              {/* <!-- google fb login --> */}
+              {/* <!-- google fB login --> */}
               <div className="w-100 py-3">
                 {/* <!-- first content --> */}
                 <div className="d-flex align-items-center loginConHover justify-content-center signUpB py-2 w-100 mb-3">
@@ -104,7 +104,7 @@ const SignUpp = () => {
                 {/* <!-- second content --> */}
                 <div className="d-flex align-items-center loginConHover justify-content-center signUpB py-2 w-100">
                   <div className="d-flex align-items-center">
-                    <img src={Fb} alt="" className="signIconsS2" />
+                    <img src={FB} alt="" className="signIconsS2" />
                   </div>
                   <a href="" className="colorGray loginHover">
                     Sign in with Facebook

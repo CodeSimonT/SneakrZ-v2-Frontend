@@ -8,7 +8,7 @@ import instagram from "./icons8-instagram-100.png";
 import twitter from "./icons8-twitter-100.png";
 import arrow from "./icons8-arrow-100.png";
 import arrowLeft from "./arrowLeft.png";
-import Fb from "./FB.png";
+import FB from "./FB.png";
 import Google from "./Google.png";
 import person from "./icons8-person-100.png";
 import imageProfile from "./imageProfile.png";
@@ -25,7 +25,7 @@ import bell from "./bell.png";
 
 export {
   arrowLeft,
-  Fb,
+  FB,
   Google,
   bag,
   heart,
