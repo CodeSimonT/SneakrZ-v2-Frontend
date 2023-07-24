@@ -52,11 +52,13 @@ const UserProfile = () => {
   }
   return (
     <>
-      <section className="py-5 px-5 urbanist">
+      <section className="py-5 px-1 px-lg-5 urbanist">
         <div className="container-fluid">
           {/* heading */}
           <div className="d-flex justify-content-between userHeading pb-4">
-            <h2 className="urbanistBold">SneakrZ Account</h2>
+            <div className="d-flex align-items-center">
+              <h2 className="urbanistBold">SneakrZ Account</h2>
+            </div>
             <button
               className="userButtonStyle"
               onClick={() => setlogOutConfirm(false)}
@@ -65,9 +67,9 @@ const UserProfile = () => {
             </button>
           </div>
           {/* body */}
-          <div className="row mt-5">
+          <div className="row mt-3 mt-lg-5">
             {/* left content */}
-            <div className="col-4">
+            <div className="col-12 col-lg-4">
               {/* image container */}
               <div className="d-flex flex-column align-items-start">
                 <div className="profileContainer">
@@ -79,7 +81,7 @@ const UserProfile = () => {
                 <p className="colorGray">{info?.email} </p>
               </div>
               {/* navigation */}
-              <div className="mt-4">
+              <div className="mt-0 mt-lg-4 mb-5">
                 {profileLinks.map((item, index) => (
                   <div key={item.id} className="mb-3">
                     <div
@@ -127,7 +129,7 @@ const UserProfile = () => {
               </div>
             </div>
             {/* right container */}
-            <div className="col-8">
+            <div className="col-12 col-lg-8">
               {/* Render the selected component here */}
               {componentToRender}
             </div>

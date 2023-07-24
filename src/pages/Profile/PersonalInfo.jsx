@@ -81,7 +81,7 @@ const PersonalInfo = () => {
       {/* body content */}
       <div className="row ">
         {/* name */}
-        <div className="col-6 ">
+        <div className="col-12 col-md-6">
           <div className="useDataCon p-4 m-1">
             <div className="d-flex justify-content-between mb-2">
               <h4 className="urbanistBold">Name</h4>
@@ -93,8 +93,8 @@ const PersonalInfo = () => {
           </div>
         </div>
         {/* contact */}
-        <div className="col-6 ">
-          <div className="useDataCon p-4 m-1 ">
+        <div className="col-12 col-md-6">
+          <div className="useDataCon p-4 m-1 mt-4 mt-md-0">
             <div className="d-flex justify-content-between mb-2">
               <h4 className="urbanistBold">Contactable at</h4>
               <div className="iconsSize">
@@ -105,7 +105,7 @@ const PersonalInfo = () => {
           </div>
         </div>
         {/* House No. */}
-        <div className={`col-6  `}>
+        <div className="col-12 col-md-6">
           <div className="useDataCon p-4 m-1 mt-4">
             <div className="d-flex justify-content-between mb-2">
               <h4 className="urbanistBold">House No.</h4>
@@ -117,7 +117,7 @@ const PersonalInfo = () => {
           </div>
         </div>
         {/* City */}
-        <div className={`col-6  `}>
+        <div className="col-12 col-md-6">
           <div className="useDataCon p-4 m-1 mt-4">
             <div className="d-flex justify-content-between mb-2">
               <h4 className="urbanistBold">City</h4>
@@ -129,8 +129,8 @@ const PersonalInfo = () => {
           </div>
         </div>
         {/* Country */}
-        <div className={`col-6  `}>
-          <div className="useDataCon p-4 m-1 my-4">
+        <div className="col-12 col-md-6">
+          <div className="useDataCon p-4 m-1 mt-4">
             <div className="d-flex justify-content-between mb-2">
               <h4 className="urbanistBold">Country</h4>
               <div className="iconsSize">
@@ -141,8 +141,8 @@ const PersonalInfo = () => {
           </div>
         </div>
         {/* address */}
-        <div className={`col-6  `}>
-          <div className="useDataCon p-4 m-1 my-4">
+        <div className="col-12 col-md-6">
+          <div className="useDataCon p-4 m-1 mt-4">
             <div className="d-flex justify-content-between mb-2">
               <h4 className="urbanistBold">Address</h4>
               <div className="iconsSize">
