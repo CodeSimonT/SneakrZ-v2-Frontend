@@ -19,8 +19,12 @@ import S14 from "./S14.webp";
 import S15 from "./S15.webp";
 import LoginImage from "./LoginImage.svg";
 import RegisterImage from "./RegisterImage.svg";
+import shoes1 from "./shoes1.jpg";
+import Shoes2 from "./Shoes2.jpg";
 
 export {
+  shoes1,
+  Shoes2,
   LoginImage,
   RegisterImage,
   heroImage,

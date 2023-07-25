@@ -148,9 +148,7 @@ const SingleShoes = () => {
                 >
                   <h5 className="mb-0 text-white pointer ">Add to Bag</h5>
                 </div>
-                <div className="addButton2 pointer w-100 py-3 mt-3 rounded-pill text-center">
-                  <h5 className="mb-0 pointer ">Favorite</h5>
-                </div>
+
                 {/* description */}
                 <div className="mt-5 mb-5">
                   <p className="">{singleShoes?.description} </p>
@@ -187,12 +185,12 @@ const SingleShoes = () => {
                     >
                       <div className="accordion-body px-0 colorGray">
                         <p className="mb-4">
-                          Your order of ₱500,000 or more gets free standard
+                          Your order of $2000 or more gets free standard
                           delivery.
                         </p>
                         <ul className="ms-2 mb-4">
-                          <li>Standard delivered 1year Business Days</li>
-                          <li>Express delivered 1second Business Days</li>
+                          <li>Standard delivered 7 days Business Days</li>
+                          <li>Express delivered 5 days Business Days</li>
                         </ul>
                         <p className="mb-3">
                           Orders are processed and delivered Monday-Friday
@@ -226,7 +224,7 @@ const SingleShoes = () => {
                       aria-labelledby="flush-headingTwo"
                       data-bs-parent="#accordionFlushExample"
                     >
-                      <div className="accordion-body">shessh</div>
+                      <div className="accordion-body">Empty</div>
                     </div>
                   </div>
                 </div>

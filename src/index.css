@@ -285,3 +285,12 @@ h5 {
   height: 30px;
   border-radius: 50%;
 }
+.mainText {
+  max-width: 400px;
+}
+.borderRB {
+  border-radius: 10px;
+}
+.textRight {
+  text-align: right;
+}

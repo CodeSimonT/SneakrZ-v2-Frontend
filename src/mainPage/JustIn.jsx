@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const JustIn = () => {
   return (
     <>
-      <section className="container-fluid">
+      <section className="container-fluid mb-5">
         <div className="w-100 justInContainer ">
           {/* overlay */}
           <div className="justInOverlay" />
